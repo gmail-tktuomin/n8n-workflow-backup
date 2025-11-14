@@ -1,0 +1,121 @@
+{
+  "active": false,
+  "connections": {
+    "On Error": {
+      "main": [
+        [
+          {
+            "node": "Set message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set message": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-21T06:13:13.144Z",
+  "id": "fKGhzmGAaX5tfRRV",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "OnErrorToSlack",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "85f4b58f-6794-499c-a3e8-efb6ce4ee77c",
+      "name": "On Error",
+      "type": "n8n-nodes-base.errorTrigger",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=Workflow `{{$json[\"workflow\"][\"name\"]}}` failed to run! [execution]({{ $json.execution.url }})"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a0614d17-198d-4c2b-8d9f-d5b31aefbb20",
+      "name": "Set message",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        272,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U08LJDZ0YUR",
+          "mode": "list",
+          "cachedResultName": "topi.tuominen"
+        },
+        "text": "={{ $json.message }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        0
+      ],
+      "id": "750fbd2c-a386-4239-b4c7-b0221fc5f4df",
+      "name": "Send a message",
+      "webhookId": "6e1d073e-8ff0-4da7-b3d7-f5cdbd771e0a",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-21T06:13:13.148Z",
+      "createdAt": "2025-10-21T06:13:13.148Z",
+      "role": "workflow:owner",
+      "workflowId": "fKGhzmGAaX5tfRRV",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-21T06:15:14.000Z",
+  "versionId": "cf5cdd34-e132-44a2-932e-bf968bcd4fc4"
+}
