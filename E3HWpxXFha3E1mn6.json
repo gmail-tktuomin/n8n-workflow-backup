@@ -836,8 +836,15 @@
       "recurrenceRules": []
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-21T07:13:18.000Z",
-  "versionId": "bb6cd5b3-226c-4823-9135-8d7029b5e7c5"
+  "updatedAt": "2025-11-14T12:56:37.000Z",
+  "versionId": "87c8c1ab-6e43-4434-b4ba-822ef09d739f"
 }
