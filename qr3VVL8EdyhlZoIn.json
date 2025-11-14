@@ -1,0 +1,326 @@
+{
+  "active": false,
+  "connections": {
+    "Create a Trello task": {
+      "main": [
+        [
+          {
+            "node": "Create a checklist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a checklist": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Create checklist item1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Create a Trello task",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Update a card",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create checklist item1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-17T13:38:08.151Z",
+  "id": "qr3VVL8EdyhlZoIn",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "trellocard-and-checklists",
+  "nodes": [
+    {
+      "parameters": {
+        "listId": "68d645f10ae78fb9133cee81",
+        "name": "={{ $json.checklistItems[0] }}",
+        "description": "={{ $json.checklistItems[1] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        2544,
+        -576
+      ],
+      "id": "e9d8f904-bf91-4899-840d-c6979372a238",
+      "name": "Create a Trello task",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "checklist",
+        "operation": "create",
+        "cardId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "name": "Todo:",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        2768,
+        -576
+      ],
+      "id": "5597e548-05f8-4bd7-a138-3f76ec1c1c07",
+      "name": "Create a checklist",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "checklist",
+        "operation": "createCheckItem",
+        "checklistId": "={{ $('Create a checklist').item.json.id }}",
+        "name": "={{ $('Merge').item.json.checklistItems }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        3440,
+        -576
+      ],
+      "id": "ad83c2bd-519c-4e27-be03-e7cfeec8bb4e",
+      "name": "Create checklist item1",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "array",
+              "type": "object"
+            },
+            {
+              "name": "label"
+            }
+          ]
+        }
+      },
+      "id": "3dfb4f3d-cebe-421c-892d-897a382e39e9",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        2112,
+        -624
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": "=20",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3216,
+        -624
+      ],
+      "id": "4dc8cc6d-f4fe-4098-99f5-61ac05fed10c",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "checklistItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2768,
+        -768
+      ],
+      "id": "370d8071-e602-4f18-9553-2bc68397e64a",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2992,
+        -624
+      ],
+      "id": "d3e33a83-c233-419f-b62e-810af9e0d8ff",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "id": {
+          "__rl": true,
+          "value": "={{ $('Create a Trello task').item.json.id }}",
+          "mode": "id"
+        },
+        "updateFields": {
+          "idLabels": "={{ $('Start').item.json.label }}",
+          "name": "={{ $('Start').item.json.array['0'] }}"
+        }
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        3440,
+        -768
+      ],
+      "id": "e422c3ec-eb3a-4505-ab1f-0a199ad681b4",
+      "name": "Update a card",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get first input\nconst raw = $input.first().json;\n\n// Some inputs are nested under raw.array\nconst obj = raw.array ? raw.array : raw;\n\n// Get only numeric keys (0, 1, 2, ...)\nconst numericKeys = Object.keys(obj)\n  .filter(k => /^\\d+$/.test(k))\n  .sort((a, b) => parseInt(a) - parseInt(b));\n\n// Build the checklist array, skipping first element\nconst checklistItems = numericKeys.slice(1).map(k => obj[k]);\n\n// Add label at the end if available\nif (obj.label) {\n  checklistItems.push(`Label: ${obj.label}`);\n} else if (raw.label) {\n  checklistItems.push(`Label: ${raw.label}`);\n}\n\n// Remove the last element if it contains \"label\" text\nif (checklistItems.length > 0 && checklistItems[checklistItems.length - 1].toLowerCase().includes('label')) {\n  checklistItems.pop();\n}\n\n// Return as single array object\nreturn [\n  {\n    json: {\n      checklistItems\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2448,
+        -784
+      ],
+      "id": "1ff20be9-f5ed-494b-85ff-422369b38ae3",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 60,
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-17T13:38:08.154Z",
+      "createdAt": "2025-10-17T13:38:08.154Z",
+      "role": "workflow:owner",
+      "workflowId": "qr3VVL8EdyhlZoIn",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-14T12:56:04.000Z",
+  "versionId": "458d1d66-5729-4a3b-a28a-37aca911d371"
+}
