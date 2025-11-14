@@ -330,8 +330,15 @@
       "lastTimeChecked": "2025-11-12T12:19:18Z"
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
   "triggerCount": 2,
-  "updatedAt": "2025-11-12T12:29:29.000Z",
-  "versionId": "73faca48-4f95-44a7-b642-c91bb8666836"
+  "updatedAt": "2025-11-14T12:53:44.000Z",
+  "versionId": "33507529-8643-4db3-9bcd-2cd378835b8a"
 }
