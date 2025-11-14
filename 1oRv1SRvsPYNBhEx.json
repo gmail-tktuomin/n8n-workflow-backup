@@ -1,0 +1,165 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get HubSpot Deals",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get HubSpot Deals": {
+      "main": [
+        [
+          {
+            "node": "Extract Deal Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Deal Fields": {
+      "main": [
+        [
+          {
+            "node": "Send Slack Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-10T11:06:41.549Z",
+  "id": "1oRv1SRvsPYNBhEx",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Hubspot to slack",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "id": "314fa01b-69b0-45ae-96bd-3465cea98c0c",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        -80,
+        320
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "authentication": "appToken",
+        "resource": "deal",
+        "operation": "getAll",
+        "returnAll": true,
+        "filters": {
+          "propertiesCollection": {
+            "propertiesValues": {
+              "properties": [
+                "dealname",
+                "hs_lastmodifieddate",
+                "notes_last_updated",
+                "notes_last_contacted",
+                "hubspot_owner_id"
+              ],
+              "propertyMode": "valueOnly"
+            }
+          }
+        }
+      },
+      "id": "5a7dec19-8ad6-4ba8-93ff-0b5f73e11740",
+      "name": "Get HubSpot Deals",
+      "type": "n8n-nodes-base.hubspot",
+      "position": [
+        176,
+        320
+      ],
+      "typeVersion": 2,
+      "credentials": {
+        "hubspotAppToken": {
+          "id": "MVvJoJjbLz8rMFTr",
+          "name": "HubSpot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const props = item.json.properties || {};\n\n  return {\n    json: {\n      dealId: item.json.dealId || '',\n      dealname: props.dealname?.value || '',\n      lastmodifieddate: props.hs_lastmodifieddate?.value || '',\n      notes_last_updated: props.notes_last_updated?.value || '',\n      notes_last_contacted: props.notes_last_contacted?.value || ''\n    }\n  };\n});"
+      },
+      "id": "d0062914-da82-48f2-b374-a104f24d22d1",
+      "name": "Extract Deal Fields",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        400,
+        320
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U08LJDZ0YUR",
+          "mode": "list",
+          "cachedResultName": "topi.tuominen"
+        },
+        "text": "=Deals which are moved to Closed Lost:\n{{ $json.dealname }}\n",
+        "otherOptions": {}
+      },
+      "id": "0963bbc5-2c8c-4829-a408-3ed93089b06a",
+      "name": "Send Slack Notification",
+      "type": "n8n-nodes-base.slack",
+      "position": [
+        640,
+        320
+      ],
+      "webhookId": "WEBHOOK_ID_PLACEHOLDER",
+      "typeVersion": 2.3,
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-10T11:06:41.550Z",
+      "createdAt": "2025-10-10T11:06:41.550Z",
+      "role": "workflow:owner",
+      "workflowId": "1oRv1SRvsPYNBhEx",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-10T12:15:44.000Z",
+  "versionId": "4682b8cb-eb8e-45e8-8869-ee89bae775f6"
+}
