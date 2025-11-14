@@ -489,8 +489,15 @@
       "lastTimeChecked": "2025-11-12T12:19:18Z"
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
   "triggerCount": 2,
-  "updatedAt": "2025-11-13T08:05:03.000Z",
-  "versionId": "b295a763-79aa-41d0-b012-3e681d59ca18"
+  "updatedAt": "2025-11-14T12:53:19.000Z",
+  "versionId": "d417a631-c62f-4d40-aa4d-29dc567bbc9a"
 }
