@@ -1,0 +1,205 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Search contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search contacts": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Create a deal",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-10-21T06:34:25.920Z",
+  "id": "GMC7RHAi8MlK4t2J",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Subworkflow to add new deal to Hubspot",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "email"
+            },
+            {
+              "name": "project"
+            },
+            {
+              "name": "value",
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "id": "2e151acc-fc9f-4a78-8329-32560be76a0b",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "appToken",
+        "operation": "search",
+        "filterGroupsUi": {
+          "filterGroupsValues": [
+            {
+              "filtersUi": {
+                "filterValues": [
+                  {
+                    "propertyName": "email|string",
+                    "value": "={{ $json.email }}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e1670811-f00b-4885-abad-8da724264c7f",
+      "name": "Search contacts",
+      "credentials": {
+        "hubspotAppToken": {
+          "id": "MVvJoJjbLz8rMFTr",
+          "name": "HubSpot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e6261248-cf51-45fe-94dc-0180eb50fc63",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        384,
+        0
+      ],
+      "id": "1e336dd2-8015-423b-bc08-23a46243241f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "authentication": "appToken",
+        "resource": "deal",
+        "stage": "3412283597",
+        "additionalFields": {
+          "amount": "={{ $('Start').item.json.value }}",
+          "dealName": "={{ $('Start').item.json.project }}"
+        }
+      },
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.2,
+      "position": [
+        592,
+        -80
+      ],
+      "id": "60f761d2-4c1b-4ad1-8448-8a62558d55f9",
+      "name": "Create a deal",
+      "credentials": {
+        "hubspotAppToken": {
+          "id": "MVvJoJjbLz8rMFTr",
+          "name": "HubSpot account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "Start": [
+      {
+        "json": {
+          "name": "Kimmo Rantala",
+          "email": "kimmo.rantala@barabra.fi",
+          "project": "uusi verkkokampanja",
+          "value": "500"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-21T06:34:25.923Z",
+      "createdAt": "2025-10-21T06:34:25.923Z",
+      "role": "workflow:owner",
+      "workflowId": "GMC7RHAi8MlK4t2J",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-22T10:45:05.000Z",
+  "versionId": "b9237478-242d-40e5-9be7-b4612ce03b46"
+}
