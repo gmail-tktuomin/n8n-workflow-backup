@@ -1,0 +1,843 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get many messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a message": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Mark a message as read",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages": {
+      "main": [
+        [
+          {
+            "node": "Get a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "PM",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Graphical designer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Copy",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Animator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Programer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Copy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PM": {
+      "main": [
+        [
+          {
+            "node": "Call 'trellocard-and-checklists'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Programer": {
+      "main": [
+        [
+          {
+            "node": "Call 'trellocard-and-checklists'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Graphical designer": {
+      "main": [
+        [
+          {
+            "node": "Call 'trellocard-and-checklists'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copy": {
+      "main": [
+        [
+          {
+            "node": "Call 'trellocard-and-checklists'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Animator": {
+      "main": [
+        [
+          {
+            "node": "Call 'trellocard-and-checklists'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Mark a message as read": {
+      "main": [
+        []
+      ]
+    },
+    "Call 'trellocard-and-checklists'": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-15T13:12:55.532Z",
+  "id": "E3HWpxXFha3E1mn6",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Gmail to Trello tasks",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -352
+      ],
+      "id": "b92b6ed6-bb1b-4b76-a432-6a89c5fba306",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        448,
+        -352
+      ],
+      "id": "721c3264-3ee0-427c-85ba-c6f58b5a6442",
+      "name": "Get a message",
+      "webhookId": "12c2a21e-9f50-4892-bc4a-4aefddaa8c68",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jmEHeGpSkhibp8DY",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Laadi markkinointitiimin tehtävälista alla olevan brieffin perusteella. Luo jokaiselle tiimin roolille oma Trello-kortti, jossa on kortin otsikko ja checklista (bullet point -muodossa tai checkboxeina) tehtävän eri vaiheille.\n\nKäytä suomen kieltä ja pidä tehtävät lyhyinä, selkeinä ja toimintakeskeisinä. Tehtäviä per rooli tarvittava määrä.\n\n\nMarkkinointibrief:\nTässä on markkinointitoimenpiteen brief: {{ $json.snippet }}\n\n\nTiimi:\n\n- Graafinen suunnittelija\n- Copywriter\n- Animaattori\n- Projektipäällikkö\n- Ohjelmoija\n\nEsimerkki:\n{\n\"Graafinen suunnittelija\": [\n  \"Graafinen suunnittelija\",\n\"Suunnittele banneri 940x400 px Sellon ohjeistusten mukaisesti\",\n\"Käytä Prisman brändivärejä ja typografiaa\",\"Valmistele staattinen ja mahdollinen animoitu versio\",\"Optimoi tiedostokoko ja laatu web-käyttöön\",\"Tarkista visuaalinen toimivuus eri näytöillä\"\n]\n}\n\n\nLuo samankaltainen json myös muille rooleille.\n\n\nTavoite:\nTuota valmis, suomenkielinen ja rakenteeltaan yhtenäinen lista Trello-korteista, jotka voidaan suoraan siirtää automaattisesti Trelloon n8n:n avulla. Jokaisessa projektissa ei välttämättä vaadita kaikkia tiimin jäseniä.\nÄlä lisää selityksiä, taustatietoa tai otsikoita, joita ei pyydetty. Älä käytä \"Trello-kortti: \"",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        976,
+        -352
+      ],
+      "id": "004c956d-0d5b-4c0b-bc28-1d60b20f5a08",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.id }}",
+        "contextWindowLength": "=5"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1136,
+        -128
+      ],
+      "id": "c349a7ca-0681-481d-90e7-f3267d270541",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\"Project manager\": [\"Job role: Project manager\",\n\"Design three banners in sizes 1024x768, 640x400, and 1400x800 for the 'End of Season Sale 2' campaign.\",\"Design three banners in sizes 1024x768, 640x400, and 1400x800 for the 'End of Season Sale 2' campaign.\",\"Design three banners in sizes 1024x768, 640x400, and 1400x800 for the 'End of Season Sale 2' campaign.\"\n],\n\"Graphical designer\": [\n  \"Job role: Graphical designer\",\n\"Design three banners in sizes 1024x768, 640x400, and 1400x800 for the 'End of Season Sale 2' campaign.\"\n],\n\"Copywriter\": [\n\"Job role: Copywriter\",\n\"Design three banners in sizes 1024x768, 640x400, and 1400x800 for the 'End of Season Sale 2' campaign.\"\n],\n\"Animator\": [\n\"Job role: Animator\",\n\"Design three banners in sizes 1024x768, 640x400, and 1400x800 for the 'End of Season Sale 2' campaign.\"\n],\n\"Programmer\": [\n\"Job role: Programmer\",\n\"Design three banners in sizes 1024x768, 640x400, and 1400x800 for the 'End of Season Sale 2' campaign.\"\n]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1264,
+        -128
+      ],
+      "id": "ad7831ba-e6ad-4cfd-9f48-c725a5fcec75",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        -352
+      ],
+      "id": "deb4dbb6-b828-49ef-b944-871e2a7c5a8f",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "batchSize": 50,
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1856,
+        -352
+      ],
+      "id": "977cba19-7df6-43a8-90ab-b2607e794bb1",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        -128
+      ],
+      "id": "ef8b53ba-2dec-406d-943c-3be09a3cd50d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1344,
+        80
+      ],
+      "id": "043b6dc6-6775-4675-8813-d1cf73e68c34",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 10,
+        "filters": {
+          "readStatus": "unread"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        -352
+      ],
+      "id": "a31e74aa-0f33-4351-a057-4911af5501f9",
+      "name": "Get many messages",
+      "webhookId": "b328b044-8c18-4c57-949b-2433d5f95670",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jmEHeGpSkhibp8DY",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Get a message').item.json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2000,
+        -736
+      ],
+      "id": "31766f77-9d1e-4a4e-bc50-0fde21ecd2ea",
+      "name": "Mark a message as read",
+      "webhookId": "19a195cb-a125-4eb3-9a02-732e70e501b1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jmEHeGpSkhibp8DY",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json[\"0\"] }}",
+                    "rightValue": "Projektipäällikkö",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "89599911-1617-4d74-ac51-fd345246fc7a"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "dc760e85-ddb3-41db-90cb-38f4e633ea0a",
+                    "leftValue": "={{ $json[\"0\"] }}",
+                    "rightValue": "Graafinen suunnittelija",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ac8a10f9-3f0f-44cb-b1a0-1fa36b32dffa",
+                    "leftValue": "={{ $json[\"0\"] }}",
+                    "rightValue": "Copywriter",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "dcaaf179-d045-4f68-ad35-c3bb832851d7",
+                    "leftValue": "={{ $json[\"0\"] }}",
+                    "rightValue": "Animaattori",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3d774c48-aabd-4108-93a5-a6f8bdb2b15d",
+                    "leftValue": "={{ $json[\"0\"] }}",
+                    "rightValue": "Ohjelmoija",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e4f4f675-4abf-4782-a5ae-ff11546a2d1c",
+                    "leftValue": "={{ $json[\"0\"] }}",
+                    "rightValue": "Tekstisuunnittelija",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        2080,
+        -416
+      ],
+      "id": "1f371fe7-1f7b-48ea-a188-c1eee356684c",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7023a08f-9763-4697-b70c-00f9571bd5b9",
+              "name": "label",
+              "value": "68d645d9f40e33606b782413",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        -736
+      ],
+      "id": "04bdb4be-b055-457a-a233-9a94f552332e",
+      "name": "PM"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7023a08f-9763-4697-b70c-00f9571bd5b9",
+              "name": "label",
+              "value": "68d645d9f40e33606b782414",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        -544
+      ],
+      "id": "c36f4338-7cae-4137-a4d8-edae0810275e",
+      "name": "Graphical designer"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7023a08f-9763-4697-b70c-00f9571bd5b9",
+              "name": "label",
+              "value": "68d645d9f40e33606b782416",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        -352
+      ],
+      "id": "e4011abb-433d-4087-9011-f1f2227394b2",
+      "name": "Copy"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7023a08f-9763-4697-b70c-00f9571bd5b9",
+              "name": "label",
+              "value": "68d645d9f40e33606b782415",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        -160
+      ],
+      "id": "cc142297-ccc2-49be-bacd-19675214ed58",
+      "name": "Animator"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7023a08f-9763-4697-b70c-00f9571bd5b9",
+              "name": "label",
+              "value": "68d645d9f40e33606b782417",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        32
+      ],
+      "id": "66e22c3b-d453-4bed-be8e-7a53c3be1a4c",
+      "name": "Programer"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1008,
+        -128
+      ],
+      "id": "3327ec9c-5ea2-4594-a2d0-0f9d9a417def",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "3erpjknFp1YxWmHp",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "qr3VVL8EdyhlZoIn",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/qr3VVL8EdyhlZoIn",
+          "cachedResultName": "trellocard-and-checklists"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "label": "={{ $json.label }}",
+            "array": "={{ $json}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "array",
+              "displayName": "array",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            },
+            {
+              "id": "label",
+              "displayName": "label",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        2528,
+        -160
+      ],
+      "id": "37e595ef-5998-452b-8e47-b255b3e7c455",
+      "name": "Call 'trellocard-and-checklists'"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-15T13:12:55.533Z",
+      "createdAt": "2025-10-15T13:12:55.533Z",
+      "role": "workflow:owner",
+      "workflowId": "E3HWpxXFha3E1mn6",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-21T07:13:18.000Z",
+  "versionId": "bb6cd5b3-226c-4823-9135-8d7029b5e7c5"
+}
