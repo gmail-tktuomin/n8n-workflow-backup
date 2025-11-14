@@ -103,7 +103,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow",
+  "name": "airtable some",
   "nodes": [
     {
       "parameters": {
@@ -597,8 +597,15 @@
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-10-29T13:40:23.000Z",
-  "versionId": "5a5d892b-8bd5-4e35-a4ed-56eff4a0726d"
+  "updatedAt": "2025-11-14T12:55:55.000Z",
+  "versionId": "697d751d-84b6-4e9d-bd5b-71a1a43e3c93"
 }
