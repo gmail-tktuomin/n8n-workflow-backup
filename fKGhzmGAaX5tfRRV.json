@@ -114,8 +114,15 @@
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-10-21T06:15:14.000Z",
-  "versionId": "cf5cdd34-e132-44a2-932e-bf968bcd4fc4"
+  "updatedAt": "2025-11-14T12:56:22.000Z",
+  "versionId": "2ef9008f-f35a-490c-965a-47f409075465"
 }
