@@ -1,0 +1,139 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Create a card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a card": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-11-18T11:29:23.223Z",
+  "id": "BRErGVrd8KUfdveS",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Excel to OKSS Trello",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Brieffi ecel",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Brieffi",
+              "fieldType": "file",
+              "acceptFileTypes": ".xlsx"
+            },
+            {
+              "fieldLabel": "Prefix",
+              "placeholder": "Prisma Mikkeli"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        96,
+        -32
+      ],
+      "id": "73bc912a-6be2-47e3-9f9e-1a3a02d93429",
+      "name": "On form submission",
+      "webhookId": "5e6a1956-0500-4e94-beb6-4de50ef098cd"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "binaryPropertyName": "=Brieffi",
+        "options": {
+          "headerRow": true,
+          "readAsString": false
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        352,
+        -32
+      ],
+      "id": "675c2a55-28b9-4051-ae18-204b891befd2",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "listId": "691c70af1699acba2c4dcb80",
+        "name": "={{ $('On form submission').item.json.Prefix }} {{ $json.Lehti }} {{ $json[\"Päivä\"] }} {{ $json[\"Sivu/Osasto\"] }}",
+        "description": "=Info:{{ $json.Info }}\nKoko:{{ $json.Koko }}\nLehti:{{ $json.Lehti }}\nSivu/Osasto:{{ $json[\"Sivu/Osasto\"] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -32
+      ],
+      "id": "903e9ce6-bd95-425d-8c2e-e3efe8350a95",
+      "name": "Create a card",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-18T11:29:23.229Z",
+      "createdAt": "2025-11-18T11:29:23.229Z",
+      "role": "workflow:owner",
+      "workflowId": "BRErGVrd8KUfdveS",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-20T06:53:16.000Z",
+  "versionId": "ce3a4c25-af43-4194-812c-fadbda016911"
+}
