@@ -343,7 +343,8 @@
   "id": "a2MpjLZ1HXchrlA0",
   "isArchived": false,
   "meta": {
-    "templateId": "5898"
+    "templateId": "5898",
+    "templateCredsSetupCompleted": true
   },
   "name": "Automated n8n Workflow Backup to GitHub with Deletion Tracking",
   "nodes": [
@@ -676,8 +677,8 @@
       "name": "Execute Workflow",
       "type": "n8n-nodes-base.executeWorkflow",
       "position": [
-        2400,
-        512
+        2416,
+        592
       ],
       "typeVersion": 1.2
     },
@@ -812,7 +813,7 @@
     {
       "parameters": {
         "filters": {
-          "tags": "safe"
+          "tags": "issafe"
         },
         "requestOptions": {
           "allowUnauthorizedCerts": true
@@ -1155,6 +1156,35 @@
         864
       ],
       "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U08LJDZ0YUR",
+          "mode": "list",
+          "cachedResultName": "topi.tuominen"
+        },
+        "text": "N8N backup is done",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        2368,
+        304
+      ],
+      "id": "49e283d2-0605-42e8-af92-0b2fb9fc56f0",
+      "name": "Send a message",
+      "webhookId": "5c78a73f-a8cb-4715-bf7e-6475f92a7e0a",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
     }
   ],
   "origin": "n8n",
@@ -1183,6 +1213,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-14T12:53:36.000Z",
-  "versionId": "82bf7c98-864d-45ba-85dc-ddc02517279b"
+  "updatedAt": "2025-11-14T13:06:13.000Z",
+  "versionId": "d9f3c4a3-9107-4dab-bea7-5fee6a30c7c3"
 }
