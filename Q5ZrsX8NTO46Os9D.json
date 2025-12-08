@@ -1,0 +1,546 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-04T14:29:16.191Z",
+    "createdAt": "2025-12-04T14:29:16.191Z",
+    "versionId": "972255d4-fbfb-4e25-a74a-861c6e1fddc8",
+    "workflowId": "Q5ZrsX8NTO46Os9D",
+    "nodes": [
+      {
+        "parameters": {
+          "operation": "Run actor and get dataset",
+          "actorId": {
+            "__rl": true,
+            "value": "Wpp1BZ6yGWjySadk3",
+            "mode": "list",
+            "cachedResultName": "Linkedin Post Scraper ✅ No cookies ✅ $2 per 1k posts (supreme_coder/linkedin-post)",
+            "cachedResultUrl": "https://console.apify.com/actors/Wpp1BZ6yGWjySadk3/input"
+          },
+          "customBody": "{\n    \"deepScrape\": true,\n    \"limitPerSource\": 2,\n    \"rawData\": false,\n    \"urls\": [\n      \"https://www.linkedin.com/in/aapomaki/\",\"https://www.linkedin.com/in/rikuvassinen/\",\n\"https://www.linkedin.com/in/vtaube/\",\n\"https://www.linkedin.com/in/jaamo/\",\n\"https://www.linkedin.com/in/emilialiukko/\",      \"https://www.linkedin.com/in/eka-ruola/\",\n      \"https://www.linkedin.com/in/johannakoskela/\",\"https://www.linkedin.com/in/kati-eerola-267a9a130/\",\"https://www.linkedin.com/in/lauritoivonen/\"\n    ]\n}"
+        },
+        "type": "@apify/n8n-nodes-apify.apify",
+        "typeVersion": 1,
+        "position": [
+          208,
+          0
+        ],
+        "id": "45d25a70-9d5a-4e63-bf95-e11b39eb9888",
+        "name": "Run an Actor and get dataset",
+        "credentials": {
+          "apifyApi": {
+            "id": "jBujiYu2cIiVxlfR",
+            "name": "Apify account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "batchSize": 20,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          416,
+          0
+        ],
+        "id": "474ce88d-dfe9-4b51-9772-1de2729c4438",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "weeks",
+                "triggerAtDay": [
+                  1,
+                  3,
+                  5
+                ],
+                "triggerAtHour": 9,
+                "triggerAtMinute": 15
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          -16,
+          0
+        ],
+        "id": "f2db301c-da4c-4e09-8c0f-37365f17d77e",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "value": "gpt-5-mini",
+            "mode": "list",
+            "cachedResultName": "GPT-5-MINI"
+          },
+          "responses": {
+            "values": [
+              {
+                "role": "system",
+                "content": "=You are a helpful, precise LinkedIn post classifier for an marketing audience  understand cool news that come out of it that actually strike have an interesting"
+              },
+              {
+                "content": "=Classify a LinkedIn post for an automation-focused audience. Return only {\"verdict\": \"relevant or not_relevant\"}.\n\n- Relevant if it's valuable advice for someone looking to start an marketing Agency\n\n- Not relevant if it's motivational/personal, non-automation coding, crypto/politics/finance, or events, or seminar, or tool discounts etc.. or vague hype with no build/impact or just pushing euros or dollars.\n\nOutput valid JSON only.\n{\"verdict\": \"relevant or not_relevant\"}."
+              },
+              {
+                "content": "=Here is the linkeidn post to analyse\n\n {{ $json.text }}"
+              }
+            ]
+          },
+          "builtInTools": {},
+          "options": {
+            "textFormat": {
+              "textOptions": {
+                "type": "json_object"
+              }
+            }
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "typeVersion": 2,
+        "position": [
+          720,
+          -48
+        ],
+        "id": "c0c41981-b7ec-4c5d-83d9-931cea4ae445",
+        "name": "Test if relevant",
+        "credentials": {
+          "openAiApi": {
+            "id": "lymwGoIItinvgkKl",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "authentication": "oAuth2",
+          "select": "channel",
+          "channelId": {
+            "__rl": true,
+            "value": "C09U499UTGW",
+            "mode": "list",
+            "cachedResultName": "vinokattohuone"
+          },
+          "text": "=Asiakas- ja kilpalijatiivistelmä linkedinin postauksista:\n\n{{ $('Loop Over Items').item.json.text }}\n\n\n-----\n\n\n",
+          "otherOptions": {}
+        },
+        "type": "n8n-nodes-base.slack",
+        "typeVersion": 2.3,
+        "position": [
+          1472,
+          -16
+        ],
+        "id": "84fb4dde-575c-415a-8d86-19c02cf54a65",
+        "name": "Post to Slack",
+        "webhookId": "52135346-33a8-443d-a859-64f0df3658ea",
+        "credentials": {
+          "slackOAuth2Api": {
+            "id": "xk64iVuu22yHYOAw",
+            "name": "Slack account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f4549fc8-549f-49ed-8725-960513ded987",
+                "leftValue": "={{ $json.output[0].content[0].text.verdict }}",
+                "rightValue": "relevant",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1104,
+          -64
+        ],
+        "id": "fd65560e-be80-48bb-b17e-98bc14d94d91",
+        "name": "If"
+      }
+    ],
+    "connections": {
+      "Run an Actor and get dataset": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Test if relevant",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Run an Actor and get dataset",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Test if relevant": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Post to Slack": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Post to Slack",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Topi Tuominen",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "972255d4-fbfb-4e25-a74a-861c6e1fddc8",
+  "connections": {
+    "Run an Actor and get dataset": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Test if relevant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Run an Actor and get dataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Test if relevant": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Slack": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Post to Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-02T10:40:34.940Z",
+  "id": "Q5ZrsX8NTO46Os9D",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Kilpailija-  ja asiakasseuranta",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "Run actor and get dataset",
+        "actorId": {
+          "__rl": true,
+          "value": "Wpp1BZ6yGWjySadk3",
+          "mode": "list",
+          "cachedResultName": "Linkedin Post Scraper ✅ No cookies ✅ $2 per 1k posts (supreme_coder/linkedin-post)",
+          "cachedResultUrl": "https://console.apify.com/actors/Wpp1BZ6yGWjySadk3/input"
+        },
+        "customBody": "{\n    \"deepScrape\": true,\n    \"limitPerSource\": 2,\n    \"rawData\": false,\n    \"urls\": [\n      \"https://www.linkedin.com/in/aapomaki/\",\"https://www.linkedin.com/in/rikuvassinen/\",\n\"https://www.linkedin.com/in/vtaube/\",\n\"https://www.linkedin.com/in/jaamo/\",\n\"https://www.linkedin.com/in/emilialiukko/\",      \"https://www.linkedin.com/in/eka-ruola/\",\n      \"https://www.linkedin.com/in/johannakoskela/\",\"https://www.linkedin.com/in/kati-eerola-267a9a130/\",\"https://www.linkedin.com/in/lauritoivonen/\"\n    ]\n}"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "45d25a70-9d5a-4e63-bf95-e11b39eb9888",
+      "name": "Run an Actor and get dataset",
+      "credentials": {
+        "apifyApi": {
+          "id": "jBujiYu2cIiVxlfR",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 20,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        416,
+        0
+      ],
+      "id": "474ce88d-dfe9-4b51-9772-1de2729c4438",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1,
+                3,
+                5
+              ],
+              "triggerAtHour": 9,
+              "triggerAtMinute": 15
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -16,
+        0
+      ],
+      "id": "f2db301c-da4c-4e09-8c0f-37365f17d77e",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You are a helpful, precise LinkedIn post classifier for an marketing audience  understand cool news that come out of it that actually strike have an interesting"
+            },
+            {
+              "content": "=Classify a LinkedIn post for an automation-focused audience. Return only {\"verdict\": \"relevant or not_relevant\"}.\n\n- Relevant if it's valuable advice for someone looking to start an marketing Agency\n\n- Not relevant if it's motivational/personal, non-automation coding, crypto/politics/finance, or events, or seminar, or tool discounts etc.. or vague hype with no build/impact or just pushing euros or dollars.\n\nOutput valid JSON only.\n{\"verdict\": \"relevant or not_relevant\"}."
+            },
+            {
+              "content": "=Here is the linkeidn post to analyse\n\n {{ $json.text }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "textFormat": {
+            "textOptions": {
+              "type": "json_object"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        720,
+        -48
+      ],
+      "id": "c0c41981-b7ec-4c5d-83d9-931cea4ae445",
+      "name": "Test if relevant",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C09U499UTGW",
+          "mode": "list",
+          "cachedResultName": "vinokattohuone"
+        },
+        "text": "=Asiakas- ja kilpalijatiivistelmä linkedinin postauksista:\n\n{{ $('Loop Over Items').item.json.text }}\n\n\n-----\n\n\n",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1472,
+        -16
+      ],
+      "id": "84fb4dde-575c-415a-8d86-19c02cf54a65",
+      "name": "Post to Slack",
+      "webhookId": "52135346-33a8-443d-a859-64f0df3658ea",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f4549fc8-549f-49ed-8725-960513ded987",
+              "leftValue": "={{ $json.output[0].content[0].text.verdict }}",
+              "rightValue": "relevant",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1104,
+        -64
+      ],
+      "id": "fd65560e-be80-48bb-b17e-98bc14d94d91",
+      "name": "If"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-02T10:40:34.945Z",
+      "createdAt": "2025-12-02T10:40:34.945Z",
+      "role": "workflow:owner",
+      "workflowId": "Q5ZrsX8NTO46Os9D",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-12-04T14:29:16.000Z",
+  "versionId": "972255d4-fbfb-4e25-a74a-861c6e1fddc8"
+}
