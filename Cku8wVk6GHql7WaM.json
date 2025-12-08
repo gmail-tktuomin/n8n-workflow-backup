@@ -1,0 +1,98 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {},
+  "createdAt": "2025-11-20T11:30:56.741Z",
+  "id": "Cku8wVk6GHql7WaM",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Trigger from Slack",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C09U499UTGW",
+          "mode": "list",
+          "cachedResultName": "vinokattohuone"
+        },
+        "text": "Viesti perillä",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        384,
+        -16
+      ],
+      "id": "10f3a11b-af15-47b6-95a5-2d47ab21847f",
+      "name": "Send a message",
+      "webhookId": "b5e5d34d-811d-46bf-be6e-1379e8e95587",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "trigger": [
+          "app_mention"
+        ],
+        "watchWorkspace": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "70769e61-328e-4a01-9b56-e95fb1947feb",
+      "name": "Slack Trigger",
+      "webhookId": "b93fa598-5237-4266-bbb3-76fa5ff93dd0",
+      "credentials": {
+        "slackApi": {
+          "id": "StWNrCzUL9zY9Atl",
+          "name": "SWOTbotToken"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-20T11:30:56.744Z",
+      "createdAt": "2025-11-20T11:30:56.744Z",
+      "role": "workflow:owner",
+      "workflowId": "Cku8wVk6GHql7WaM",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-03T10:08:44.000Z",
+  "versionId": "83bfdcb2-d3cb-416f-8cc6-1ec5b3275130"
+}
