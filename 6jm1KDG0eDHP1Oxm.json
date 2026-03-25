@@ -1,0 +1,392 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Run an Actor and get dataset": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Run an Actor and get dataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-19T13:36:15.355Z",
+  "id": "6jm1KDG0eDHP1Oxm",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AI linkkariseuranta",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "Run actor and get dataset",
+        "actorId": {
+          "__rl": true,
+          "value": "Wpp1BZ6yGWjySadk3",
+          "mode": "list",
+          "cachedResultName": "Linkedin Post Scraper ✅ No cookies ✅ $2 per 1k posts (supreme_coder/linkedin-post)",
+          "cachedResultUrl": "https://console.apify.com/actors/Wpp1BZ6yGWjySadk3/input"
+        },
+        "customBody": "{\n    \"deepScrape\": true,\n    \"limitPerSource\": 1,\n    \"rawData\": false,\n    \"urls\": [\n   \"https://www.linkedin.com/in/aapomaki/\",\n\"https://www.linkedin.com/in/vtaube/\",\n\"https://www.linkedin.com/in/jaamo/\",\n\"https://www.linkedin.com/in/emilialiukko/\",      \"https://www.linkedin.com/in/maryammiradi/\",\n\"https://www.linkedin.com/in/michaellovegrove/\",    \"https://www.linkedin.com/in/alexbarady/\",\n\"http://www.linkedin.com/in/janneikola/\",\n      \"https://www.linkedin.com/in/tekoalyolli/\",\n      \"https://www.linkedin.com/in/mikiwiik/\"\n    ]\n}"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        208,
+        -432
+      ],
+      "id": "f5008920-aea5-408b-8110-d0bbe8a78bdc",
+      "name": "Run an Actor and get dataset",
+      "credentials": {
+        "apifyApi": {
+          "id": "jBujiYu2cIiVxlfR",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "triggerAtHour": 7,
+              "triggerAtMinute": 15
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -16,
+        -432
+      ],
+      "id": "e22da253-b5ef-4cc0-a082-f9cec267cb31",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a content analyser. Review this linkedin post and create me an json that contains original post without emojies, short abstract of the main points of this post, , link to original post, meta tags, punchline and category(s) (AI / news / insight / tools )\n\npost: {{ $json.postText }}\nauthor: {{ $json.authorName }}\nlink: {{ $json.url }}\n\n\nI want to be able to push that data straight to google sheet or notion.\nAlways translate text to Finnish.\n\nDont add any instructons of questions. Just the raw data.\n\ndont say \"Alkuperäinen julkaisu ilman emojeja:\"\n\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        720,
+        -432
+      ],
+      "id": "72f9390b-f7c2-4acf-b5a4-b102e4a11c1c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        -208
+      ],
+      "id": "a13b8ec3-d822-4a33-9b85-f8150e33517a",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "16QZZuTogcr7j4SRALdM1Nru--LjUCc5vqAwmznstOBM",
+          "mode": "list",
+          "cachedResultName": "ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16QZZuTogcr7j4SRALdM1Nru--LjUCc5vqAwmznstOBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16QZZuTogcr7j4SRALdM1Nru--LjUCc5vqAwmznstOBM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "abstract": "={{ $json.output.abstract }}",
+            "punchline": "={{ $json.output.punchline }}",
+            "meta_tags": "={{ $json.output.meta_tags }}",
+            "categories": "={{ $json.output.categoriess }}",
+            "link_to_original_post": "={{ $json.output.link }}",
+            "original_post": "={{ $json.output.original_post }}",
+            "author": "={{ $json.output.author }}"
+          },
+          "matchingColumns": [
+            "abstract"
+          ],
+          "schema": [
+            {
+              "id": "author",
+              "displayName": "author",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "original_post",
+              "displayName": "original_post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "abstract",
+              "displayName": "abstract",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "punchline",
+              "displayName": "punchline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "meta_tags",
+              "displayName": "meta_tags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "link_to_original_post",
+              "displayName": "link_to_original_post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1120,
+        -432
+      ],
+      "id": "0ba8b95c-1a8a-42cc-ab07-419205c08618",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NyxPaspoa6xUV6qJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $today }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        784,
+        -208
+      ],
+      "id": "e9607787-4f52-444b-8822-b2c63b113144",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\n  \"author\":\"John Doe\",\n  \"original_post\":\"this is the original post\",\n  \"abstract\": \"this is an abstract of the post\",\n  \n  \"punchline\":\"Punchline of the post\",\n  \"meta_tags\":\"tag tag tag\",\n    \"categoriess\":\"AI Claude N8n\",\n  \"link\":\"https://www.linkedin.com/foobaar/post?123\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        912,
+        -208
+      ],
+      "id": "c5a822b5-b797-46ad-a562-baa87223406b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const p = item.json;\n  results.push({\n    json: {\n      postText: p.text || '',\n      authorName: p.authorName || '',\n      url: p.url || '',\n      numLikes: p.numLikes,\n      numComments: p.numComments\n    }\n  });\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        432,
+        -432
+      ],
+      "id": "07aa3abd-c73c-4590-a318-5745877aab68",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-19T13:36:15.360Z",
+      "createdAt": "2026-03-19T13:36:15.360Z",
+      "role": "workflow:owner",
+      "workflowId": "6jm1KDG0eDHP1Oxm",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-03-20T07:15:24.921Z",
+  "versionId": "a1ad4328-58e4-4daf-8594-a98432986504"
+}
