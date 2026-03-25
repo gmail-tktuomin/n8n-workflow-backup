@@ -240,17 +240,6 @@
         ]
       ]
     },
-    "Schedule Trigger": {
-      "main": [
-        [
-          {
-            "node": "Globals",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "File is different": {
       "main": [
         [
@@ -357,7 +346,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
         848,
-        400
+        496
       ],
       "typeVersion": 1
     },
@@ -571,25 +560,6 @@
         512
       ],
       "typeVersion": 3
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "triggerAtHour": 7
-            }
-          ]
-        }
-      },
-      "id": "4f529f31-26a2-4f19-b8f3-42ce583b11ad",
-      "name": "Schedule Trigger",
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "position": [
-        848,
-        608
-      ],
-      "typeVersion": 1.2
     },
     {
       "parameters": {
@@ -1195,7 +1165,10 @@
     "owner": "gmail-tktuomin",
     "name": "n8n-workflow-backup"
   },
-  "settings": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
   "shared": [
     {
       "updatedAt": "2025-11-14T12:31:58.979Z",
@@ -1215,6 +1188,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-14T13:06:13.000Z",
-  "versionId": "d9f3c4a3-9107-4dab-bea7-5fee6a30c7c3"
+  "updatedAt": "2026-03-25T12:38:31.902Z",
+  "versionId": "883c05f3-e108-4cbe-937c-381af95cb0cd"
 }
