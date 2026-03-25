@@ -1,0 +1,136 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2026-03-12T13:31:24.519Z",
+  "id": "dUof4xGrSpq3pOdg",
+  "isArchived": false,
+  "meta": null,
+  "name": "HeerosPSA",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1305a412-67f8-4b04-a60e-36e33f34e8c7",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b59bb870-3e3e-4114-bd93-50745d033331",
+              "name": "API_KEY_HEEROS",
+              "value": "ED9kJnVDbwc1EQIcBXIBfBYVWShRRg==",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4ef83ff8-19c2-4380-92dd-f9480aab19a2",
+      "name": "Config"
+    },
+    {
+      "parameters": {
+        "url": "https://psa.heeros.com/react/api/v1/users",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Taimer-Authorization",
+              "value": "={{ $json.API_KEY_HEEROS }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        432,
+        0
+      ],
+      "id": "3af48ee9-5847-497f-8d17-f17c2d5bf609",
+      "name": "HTTP Request"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-12T13:31:24.523Z",
+      "createdAt": "2026-03-12T13:31:24.523Z",
+      "role": "workflow:owner",
+      "workflowId": "dUof4xGrSpq3pOdg",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    },
+    {
+      "updatedAt": "2026-03-13T06:52:15.196Z",
+      "createdAt": "2026-03-13T06:52:15.196Z",
+      "id": "k8gYTEaBeg6mD5Fd",
+      "name": "heeros"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-25T06:54:40.727Z",
+  "versionId": "847456f2-735e-4e60-8a84-9c43777ea25d"
+}
