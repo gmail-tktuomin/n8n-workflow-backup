@@ -1,0 +1,370 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Create sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get All contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All contacts": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Get All contacts1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All contacts1": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Create sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-06T13:40:52.503Z",
+  "id": "vKZFB2keGLNn0RYH",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Wrike - users and licenses",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b072f83b-50c2-4072-9550-62cd4c021be5",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xCiacdvbmcrPusRWvl4eelLCeYbbUXfFEPD412l16YA",
+          "mode": "list",
+          "cachedResultName": "licenses",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xCiacdvbmcrPusRWvl4eelLCeYbbUXfFEPD412l16YA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').item.json.todayis }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "userid",
+              "displayName": "userid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "groupname",
+              "displayName": "groupname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "firstName",
+              "displayName": "firstName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "lastName",
+              "displayName": "lastName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "license",
+              "displayName": "license",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2144,
+        112
+      ],
+      "id": "5b7554d9-3861-4842-bf49-807817c5756f",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NyxPaspoa6xUV6qJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1xCiacdvbmcrPusRWvl4eelLCeYbbUXfFEPD412l16YA",
+          "mode": "list",
+          "cachedResultName": "licenses",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xCiacdvbmcrPusRWvl4eelLCeYbbUXfFEPD412l16YA/edit?usp=drivesdk"
+        },
+        "title": "={{ $('Edit Fields').item.json.todayis }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1712,
+        -208
+      ],
+      "id": "17407d1c-5636-4caf-abd6-b8c539e2cd5c",
+      "name": "Create sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NyxPaspoa6xUV6qJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3a889706-3922-4766-9ce8-3a0d446b3cce",
+              "name": "todayis",
+              "value": "={{ new Date().toISOString().slice(0, 10)}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        176,
+        0
+      ],
+      "id": "8c92d890-2b49-44e1-919b-ae59565a2273",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1840,
+        112
+      ],
+      "id": "6c9a6644-2b1b-4967-8825-00db15e3724d",
+      "name": "Wait",
+      "webhookId": "fc2253b7-ab9e-4f6f-8d84-0bbe91d55e17"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.wrike.com/api/v4/groups/KX7ZJ64G",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {}
+      },
+      "id": "99b2fc9a-16bd-4c00-a33f-f479775cbf76",
+      "name": "Get All contacts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        496,
+        0
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YdEpWuExfGmLl6fR",
+          "name": "Wrike oauth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const blocks = $input.all().map(i => i.json);\n\n// If your data is under block.data (array of groups)\nconst groups = blocks.flatMap(b => Array.isArray(b.data) ? b.data : []);\n\nreturn groups.flatMap(group =>\n  (group.memberIds || []).map(memberId => ({\n    json: {\n      groupId: group.id,\n      groupTitle: group.title,\n      memberId,\n    },\n  }))\n);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        0
+      ],
+      "id": "271020bf-3450-4442-a99c-f7aa81b45fdd",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.wrike.com/api/v4/users/{{ $json.memberId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {}
+      },
+      "id": "ca80e426-3690-4388-94fe-0f38df080766",
+      "name": "Get All contacts1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1024,
+        0
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YdEpWuExfGmLl6fR",
+          "name": "Wrike oauth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        0
+      ],
+      "id": "191bf79f-873e-4951-8421-8d98cdf00fa2",
+      "name": "Split Out"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-06T13:40:52.507Z",
+      "createdAt": "2026-02-06T13:40:52.507Z",
+      "role": "workflow:owner",
+      "workflowId": "vKZFB2keGLNn0RYH",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-06T14:07:20.417Z",
+  "versionId": "1b0f2d1d-c611-42bb-98e9-467bd0bdc8bb"
+}
