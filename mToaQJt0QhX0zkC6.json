@@ -1,0 +1,374 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Get Name": {
+      "main": [
+        [
+          {
+            "node": "Get Employee Allocations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Employee Allocations": {
+      "main": [
+        [
+          {
+            "node": "Get many rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Get Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-20T13:02:35.934Z",
+  "id": "mToaQJt0QhX0zkC6",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "SubWorkflow - On call henkilöresurssit",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6929a0bd-fb69-46f0-a095-5c2ad6ac87b0",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "bcf355e1-6570-4f87-a527-856656ff39a6",
+              "name": "startDate",
+              "value": "={{ $('Get Employee Allocations').item.json.startDate }}",
+              "type": "string"
+            },
+            {
+              "id": "aac572c8-f577-47f6-b567-684d4cc1b166",
+              "name": "endDate",
+              "value": "={{ $('Get Employee Allocations').item.json.endDate }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1072,
+        0
+      ],
+      "id": "c8f4a02d-0239-427c-93d2-b3efb58b7b8e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "employees",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "name",
+              "condition": "eq",
+              "keyValue": "={{ $json.User }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4c95760b-70f0-428e-b194-ff81a3f67e65",
+      "name": "Get Name",
+      "credentials": {
+        "supabaseApi": {
+          "id": "HHEycfhJR6Fp0AeF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "projects",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.projectId }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "56a04b69-b855-439b-a7df-bcdbb1dfdea9",
+      "name": "Get many rows",
+      "credentials": {
+        "supabaseApi": {
+          "id": "HHEycfhJR6Fp0AeF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "allocations",
+        "limit": 5,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "employeeId",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "6b9c0d7e-ea31-4176-a405-55ed737683d8",
+      "name": "Get Employee Allocations",
+      "credentials": {
+        "supabaseApi": {
+          "id": "HHEycfhJR6Fp0AeF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8fe20e87-d8a4-4bce-b145-2e4bd0585d2e",
+              "leftValue": "={{ $('Get Employee Allocations').item.json.startDate }}",
+              "rightValue": "={{ $today }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "beforeOrEquals"
+              }
+            },
+            {
+              "id": "b285ad6d-6565-4917-ac6e-875f1625f4f4",
+              "leftValue": "={{ $('Get Employee Allocations').item.json.endDate }}",
+              "rightValue": "={{ $today }} ",
+              "operator": {
+                "type": "dateTime",
+                "operation": "afterOrEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        832,
+        0
+      ],
+      "id": "6534cf62-860f-4292-b974-9e45e683a13b",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "=work",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        0
+      ],
+      "id": "8f7ac48a-a91e-4c99-a27f-9c44f2e19c6f",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the first input item (your JSON)\nconst data = items[0].json;\n\n// Build the combined text\nlet resultText = '';\n\nif (Array.isArray(data.work)) {\n  resultText = data.work\n    .map(item => {\n      return `${item.name}, Start: ${item.startDate}, End: ${item.endDate}`;\n    })\n    .join(' \\r');\n}\n\n// Return as a single string\nreturn [\n  {\n    json: {\n      combinedText: resultText\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        0
+      ],
+      "id": "e2d498c5-a0ee-43b4-a7bd-08f0fa30c94e",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0A789UCP4M",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "text": "={{ $json.combinedText }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        1920,
+        0
+      ],
+      "id": "f16fb17f-28ca-411f-945c-0a211499917b",
+      "name": "Send a message",
+      "webhookId": "43347eed-01c6-4815-8927-dc49a1ab6891",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -48,
+        0
+      ],
+      "id": "e9d1ba3b-3cc4-45f6-8edc-5bcaa146a7c8",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-20T13:02:35.938Z",
+      "createdAt": "2026-01-20T13:02:35.938Z",
+      "role": "workflow:owner",
+      "workflowId": "mToaQJt0QhX0zkC6",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-22T12:47:57.038Z",
+  "versionId": "87b694bf-089f-4668-8820-87ee7d85d1da"
+}
