@@ -1,0 +1,317 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Wrike Projects": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Get user tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Wrike Projects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get group members": {
+      "main": [
+        [
+          {
+            "node": "get member names",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get member names": {
+      "main": [
+        [
+          {
+            "node": "Add responsibles to tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get user tasks": {
+      "main": [
+        [
+          {
+            "node": "get group members",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-16T09:10:54.265Z",
+  "id": "5XXSQ6EVffIHzcC0TQhYM",
+  "isArchived": false,
+  "meta": null,
+  "name": "Wrike -add user to task from group",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "5d049ba7-cc44-4ab0-867d-f128c51763fa",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.wrike.com/api/v4/contacts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "={\n  \"me\": false\n}\n",
+        "options": {}
+      },
+      "id": "59f2f700-b5cf-4f46-a5a8-4337666508c7",
+      "name": "HTTP Wrike Projects",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        464,
+        0
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YdEpWuExfGmLl6fR",
+          "name": "Wrike oauth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Inputs (replace with your own values or expressions)\nconst targetEmail = ($('Edit Fields').first().json.user).trim().toLowerCase(); // can be empty\nconst targetFirst = ($('Edit Fields').first().json.first).trim().toLowerCase();                // can be empty\nconst targetLast  = ($('Edit Fields').first().json.Last).trim().toLowerCase();                 // can be empty\nconst norm = (v) => (v ?? '').toString().trim().toLowerCase();\n\n// Wrike contacts are inside the first item's json.data array\nconst payload = items[0]?.json ?? {};\nconst contacts = Array.isArray(payload.data) ? payload.data : [];\n\nif (contacts.length === 0) {\n  throw new Error('No contacts found in items[0].json.data (unexpected Wrike response shape)');\n}\n\nfunction extractEmails(contact) {\n  const emails = [];\n  if (Array.isArray(contact.profiles)) {\n    for (const p of contact.profiles) {\n      if (p?.email) emails.push(p.email);\n    }\n  }\n  if (contact.email) emails.push(contact.email);\n  return emails.map(norm).filter(Boolean);\n}\n\nfunction fullName(contact) {\n  if (contact.name) return norm(contact.name);\n  const fn = norm(contact.firstName);\n  const ln = norm(contact.lastName);\n  return [fn, ln].filter(Boolean).join(' ');\n}\n\n// 1) Try email match if provided\nlet matches = [];\nif (targetEmail) {\n  matches = contacts.filter(c => extractEmails(c).includes(targetEmail));\n}\n\n// 2) Fallback to full name match\nif (matches.length === 0) {\n  const targetFull = [targetFirst, targetLast].filter(Boolean).join(' ').trim();\n  if (targetFull) {\n    matches = contacts.filter(c => fullName(c) === targetFull);\n  }\n}\n\n// Enforce exactly one\nif (matches.length === 0) {\n  const sample = contacts.slice(0, 5).map(c => ({\n    id: c.id,\n    name: c.name,\n    firstName: c.firstName,\n    lastName: c.lastName,\n    emails: extractEmails(c),\n  }));\n  throw new Error(`No match. Sample (first 5): ${JSON.stringify(sample)}`);\n}\n\nif (matches.length > 1) {\n  const candidates = matches.slice(0, 10).map(c => ({\n    id: c.id,\n    name: c.name,\n    emails: extractEmails(c),\n  }));\n  throw new Error(`Multiple matches (${matches.length}). Candidates: ${JSON.stringify(candidates)}`);\n}\n\n// Output single userId\nreturn [{\n  json: {\n    userId: matches[0].id,\n    name: matches[0].name ?? null,\n    emails: extractEmails(matches[0]),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        688,
+        0
+      ],
+      "id": "e58dd255-e36d-4032-a15c-b0f3878d383f",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "31e8a3fd-09e8-42dc-8e92-7edc5dfc49fa",
+              "name": "user",
+              "value": "ext-essi.juura@heku.fi",
+              "type": "string"
+            },
+            {
+              "id": "c36f6053-a2bf-4daa-991f-c28ffe8283db",
+              "name": "first",
+              "value": "Essi",
+              "type": "string"
+            },
+            {
+              "id": "563ebcdc-cfbe-4f29-a695-0475f4ebc35c",
+              "name": "Last",
+              "value": "Juura",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "82dcb106-2d6b-4216-98c5-07a61aad6775",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "url": "https://www.wrike.com/api/v4/groups/KX7YELPS",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {}
+      },
+      "id": "c786f291-8689-4083-9a1d-ad048fcb5905",
+      "name": "get group members",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1232,
+        0
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YdEpWuExfGmLl6fR",
+          "name": "Wrike oauth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://www.wrike.com/api/v4/users/{{ $json.data[0].memberIds[0] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {}
+      },
+      "id": "dcf13d09-e83f-4adb-abc7-663b6a8f7f22",
+      "name": "get member names",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1440,
+        0
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YdEpWuExfGmLl6fR",
+          "name": "Wrike oauth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://www.wrike.com/api/v4/tasks",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "responsibles",
+              "value": "={{ JSON.stringify([$json.userId]) }}"
+            },
+            {
+              "name": "status",
+              "value": "active"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4fe6ba01-587a-445a-b46b-83e633cbfe5c",
+      "name": "Get user tasks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        928,
+        0
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YdEpWuExfGmLl6fR",
+          "name": "Wrike oauth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://www.wrike.com/api/v4/tasks/{{ $('Get user tasks').item.json.data[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "addResponsibles",
+              "value": "=[\"{{ $json.data[0].id }}\"]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "87e4025d-2b89-49ac-bf38-a95add819360",
+      "name": "Add responsibles to tasks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1648,
+        0
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YdEpWuExfGmLl6fR",
+          "name": "Wrike oauth2"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-16T09:10:54.269Z",
+      "createdAt": "2026-01-16T09:10:54.269Z",
+      "role": "workflow:owner",
+      "workflowId": "5XXSQ6EVffIHzcC0TQhYM",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-05T08:03:49.160Z",
+  "versionId": "4609380e-1e74-4447-8ce0-0d1a4fa8c5fb"
+}
