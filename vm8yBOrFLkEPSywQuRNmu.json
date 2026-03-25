@@ -1,0 +1,336 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Guardrails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get information about a user": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Get information about a user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardrails": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Guardrails",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-07T16:27:40.825Z",
+  "id": "vm8yBOrFLkEPSywQuRNmu",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "SubWorkflow - Swot",
+  "nodes": [
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0A789UCP4M",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "text": "=Okay {{ $json.real_name }}\n\nHere is the info you requested:\n\n{{ $('Code in JavaScript').item.json.output }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        1152,
+        0
+      ],
+      "id": "6d8808d7-20a7-4030-bb78-dcd16f651127",
+      "name": "Send a message",
+      "webhookId": "0430468d-ef6d-43af-925f-560586d5253f",
+      "credentials": {
+        "slackApi": {
+          "id": "KnCjsoY7FV63BKyO",
+          "name": "helper"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a skillful Business Consultant Tell me more about {{ $json.Company }}\n\nKeep it under 500 words and just give the key information like founding year, turnover, number of employees, matirury, light swot, key offering and key clients if listed. Dont give references on on every bulletpoint. Collect all references as a list at the end as a text, not hyperlink.\n\nDo not give any additional info or ask for further actions.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3e7b1fe6-b0b2-4df9-aaa5-69214f203802",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "builtInTools": {
+          "webSearch": {
+            "searchContextSize": "medium"
+          }
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        8,
+        224
+      ],
+      "id": "ebdd4822-0b99-4c35-bf7c-224dd7d085c8",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "= {{ $json.Company }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        136,
+        224
+      ],
+      "id": "0e63a6c2-230a-4015-a92b-c5181adec53f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "user",
+        "user": {
+          "__rl": true,
+          "value": "={{ $('When Executed by Another Workflow').item.json.Sender }}",
+          "mode": "id"
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        928,
+        0
+      ],
+      "id": "eba1dd45-41b2-492d-8511-1d1badba5c66",
+      "name": "Get information about a user",
+      "webhookId": "29c7d515-2739-4041-81c4-6368d28f5234",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get input text\nconst inputText = $input.first().json.output;\n\n// Check if input is a string\nif (typeof inputText !== 'string') {\n  return {\n    json: {\n      output: inputText,\n      error: 'Input is not a string'\n    }\n  };\n}\n\n// Regex pattern to match markdown links: ([text](url))\nconst markdownLinkPattern = /\\(\\[.*?\\]\\(.*?\\)\\)/g;\n\n// Remove all markdown links from the text\nlet cleanedText = inputText.replace(markdownLinkPattern, '');\n\n// Add line break after bullet points ( *, or •)\n// This matches bullet points at the start of a line or after whitespace\ncleanedText = cleanedText.replace(/([*•])\\s*([^\\n]+)/g, '$1 $2\\n');\n\n// Clean up extra spaces\nconst finalText = cleanedText\n  .replace(/\\s+/g, ' ')      // Multiple spaces to single space\n  .replace(/\\s+\\./g, '.')    // Space before period\n  .replace(/\\s+,/g, ',')     // Space before comma\n  .trim();                    // Leading/trailing whitespace\n\n// Return the cleaned text\nreturn {\n  json: {\n    output: finalText\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        0
+      ],
+      "id": "b95cbedd-e988-4aee-a416-db6873753351",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "Sender"
+            },
+            {
+              "name": "Company"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -224,
+        0
+      ],
+      "id": "576185d2-2e82-42b1-9cf7-016db177ca75",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.output }}",
+        "guardrails": {
+          "jailbreak": {
+            "value": {
+              "threshold": 0.7
+            }
+          },
+          "secretKeys": {
+            "value": {
+              "permissiveness": "balanced"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.guardrails",
+      "typeVersion": 2,
+      "position": [
+        352,
+        0
+      ],
+      "id": "a05771a4-557b-4883-9372-00019a9c0a94",
+      "name": "Guardrails"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        424,
+        224
+      ],
+      "id": "36ba66ac-24a3-45de-9eb8-28bb821ded1d",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-07T16:27:40.830Z",
+      "createdAt": "2026-01-07T16:27:40.830Z",
+      "role": "workflow:owner",
+      "workflowId": "vm8yBOrFLkEPSywQuRNmu",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-23T13:18:04.718Z",
+  "versionId": "00bd0ae4-649f-4c24-87ae-81e9805b98c4"
+}
