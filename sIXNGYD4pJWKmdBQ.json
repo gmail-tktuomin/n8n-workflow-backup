@@ -30,7 +30,7 @@
       "main": [
         [
           {
-            "node": "Rewrite the text",
+            "node": "Post to Slack",
             "type": "main",
             "index": 0
           }
@@ -59,17 +59,6 @@
         ]
       ]
     },
-    "Rewrite the text": {
-      "main": [
-        [
-          {
-            "node": "Post to Slack",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Post to Slack": {
       "main": [
         [
@@ -79,6 +68,11 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "Rewrite the text": {
+      "main": [
+        []
       ]
     }
   },
@@ -100,7 +94,7 @@
           "cachedResultName": "Linkedin Post Scraper ✅ No cookies ✅ $2 per 1k posts (supreme_coder/linkedin-post)",
           "cachedResultUrl": "https://console.apify.com/actors/Wpp1BZ6yGWjySadk3/input"
         },
-        "customBody": "{\n    \"deepScrape\": true,\n    \"limitPerSource\": 5,\n    \"rawData\": false,\n    \"urls\": [\n        \"https://www.linkedin.com/in/michele-torti\",\n\"https://www.linkedin.com/in/jaamo/\",        \"https://www.linkedin.com/in/matthew-cohn-4495a0196/\",\n        \"https://www.linkedin.com/in/samarami/\"\n    ]\n}"
+        "customBody": "{\n    \"deepScrape\": true,\n    \"limitPerSource\": 2,\n    \"rawData\": false,\n    \"urls\": [\n        \"https://www.linkedin.com/in/michele-torti\",\n\"https://www.linkedin.com/in/jaamo/\",        \"https://www.linkedin.com/in/matthew-cohn-4495a0196/\",\n\"https://www.linkedin.com/in/nick-saraev/\",\"https://www.linkedin.com/in/samarami/\"\n    ]\n}"
       },
       "type": "@apify/n8n-nodes-apify.apify",
       "typeVersion": 1,
@@ -158,7 +152,7 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        976,
+        1008,
         96
       ],
       "id": "cb06f37d-1e11-4772-9b7d-ca9d91304e14",
@@ -236,11 +230,42 @@
     },
     {
       "parameters": {
+        "authentication": "oAuth2",
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U08LJDZ0YUR",
+          "mode": "list",
+          "cachedResultName": "topi.tuominen"
+        },
+        "text": "=Weekly Marketing AI Summarys:\n\n{{ $('Loop Over Items').item.json.text }}\n\n===============================================================",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1296,
+        96
+      ],
+      "id": "a4349de9-0990-40b0-8df6-5531fd2a2fc3",
+      "name": "Post to Slack",
+      "webhookId": "49fbc2d0-adf1-4f6e-ae95-719d0ec22284",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "gpt-5-mini",
+          "value": "gpt-5.2-chat-latest",
           "mode": "list",
-          "cachedResultName": "GPT-5-MINI"
+          "cachedResultName": "GPT-5.2-CHAT-LATEST"
         },
         "responses": {
           "values": [
@@ -259,7 +284,7 @@
       "typeVersion": 2,
       "position": [
         1184,
-        96
+        -176
       ],
       "id": "a917b6b9-4728-49ec-8700-7502a8ec1401",
       "name": "Rewrite the text",
@@ -267,35 +292,6 @@
         "openAiApi": {
           "id": "lymwGoIItinvgkKl",
           "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "select": "channel",
-        "channelId": {
-          "__rl": true,
-          "value": "C09U499UTGW",
-          "mode": "list",
-          "cachedResultName": "vinokattohuone"
-        },
-        "text": "=Weekly Marketing AI Summarys:\n\n{{ $json.output[0].content[0].text }}",
-        "otherOptions": {}
-      },
-      "type": "n8n-nodes-base.slack",
-      "typeVersion": 2.3,
-      "position": [
-        1536,
-        96
-      ],
-      "id": "a4349de9-0990-40b0-8df6-5531fd2a2fc3",
-      "name": "Post to Slack",
-      "webhookId": "49fbc2d0-adf1-4f6e-ae95-719d0ec22284",
-      "credentials": {
-        "slackOAuth2Api": {
-          "id": "xk64iVuu22yHYOAw",
-          "name": "Slack account"
         }
       }
     }
@@ -328,6 +324,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-12-03T10:08:10.000Z",
-  "versionId": "ac79e71c-9fcd-4ffe-a8da-f7a8943332b7"
+  "updatedAt": "2025-12-17T16:19:14.881Z",
+  "versionId": "68725f42-eaf1-4299-bfbe-29e61ced6d8e"
 }
