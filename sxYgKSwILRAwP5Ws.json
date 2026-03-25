@@ -1,0 +1,1250 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Viikkoraportti myyntijohtajalle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Email agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Viikkoraportti myyntijohtajalle": {
+      "main": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resurssiallokaati projektipäällikölle": {
+      "main": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa users'": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent Tool for getting user info from Severa PSA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent Tool for getting user info from Severa PSA": {
+      "ai_tool": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asiakasraportti": {
+      "main": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub send html to slack as a excel'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Slack comms AI agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Projektipäällikkö tuntikirjaus kooste1": {
+      "main": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa work hours'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Big brain on Brad": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa invoices'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Business controller agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa resource allocations'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa customers'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa proposal rows'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa sales cases'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa proposals'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'sub get severa projects'": {
+      "ai_tool": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Business controller brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Business controller agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email agent brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Email agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contact book Agent brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent Tool for getting user info from Severa PSA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Slack comms AI agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Asiakasraportti",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Resurssiallokaati projektipäällikölle",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Projektipäällikkö tuntikirjaus kooste1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Viikkoraportti myyntijohtajalle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contact book Agent brain2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Slack comms AI agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack comms AI agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "QA and Critic Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "QA and Critic Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "QA and Critic Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Orchstrator agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-20T11:14:33.039Z",
+  "id": "sxYgKSwILRAwP5Ws",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Severa kysely",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2032,
+        272
+      ],
+      "id": "1200ef9e-2ecd-4a2d-ad5e-d544e6a471c5",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        -1296,
+        304
+      ],
+      "id": "ec799d47-58ba-4cc8-8431-a5ed8921e2fe",
+      "name": "Send a message in Gmail",
+      "webhookId": "99bff986-0843-475b-9edd-775f01cf7528",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jmEHeGpSkhibp8DY",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Email agent in charge of google gmail ",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "Do not add anything to the message just format the email. Always output in formate HTML ready for email, dont add \"```html\\n\" or \"n```\" in the beginning or end of the mail. Just the mail.\n\nmake sure that information is presented in table format and  in clear readable html mail.\n\nDo not send emails outside heku.fi domiain\n\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        -1456,
+        96
+      ],
+      "id": "c87b3f3d-6c25-4948-bb93-98ab6f773385",
+      "name": "Email agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "19ca0a38-d2b2-4fd6-8726-234c0e67d2cf",
+              "name": "ohje",
+              "value": "=Tee viikkokooste kaikista uusista myynneistä, asiakkuuksista ja laskutuksista. Lisäksi listaa top 10 asiakasta myynnin mukaan omiksi tiedoksi. Lisaa myös kaikki avoimet projektit ja liidit sekä tarjoukset. Lähetä viesti sähköpostilla myyntijohtajalle.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1808,
+        224
+      ],
+      "id": "f87777e3-2a03-4e84-9af1-e57a01f5bd24",
+      "name": "Viikkoraportti myyntijohtajalle"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "19ca0a38-d2b2-4fd6-8726-234c0e67d2cf",
+              "name": "ohje",
+              "value": "=Tee viikkokooste valmiiksi lähetettäväksi projektipäälliköille kaikista tulevista resurssiallokaatioista projekteittain. Listaa kuinka paljon tunteja on varattu keneltä ja mille projektille, lähetä viesti projektipäällikölle.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1808,
+        -208
+      ],
+      "id": "ac74042a-0c5a-436d-902c-90e2ee8f75c0",
+      "name": "Resurssiallokaati projektipäällikölle"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.ohje }}\n\nToday is {{ $now }}\nAlways use monday-friday as a week, do not use sliding 7 day periods.\n\nAlways sign the messages with \"Raportointi automaatio\"",
+        "options": {
+          "systemMessage": "You are an orchestrator agent. You do not write emails or gather information. Just delegate taks to agents\n\nUse:\n- Business controller agent to gather the report information from PSA system\n- always use QA / Critic agent to validate the information prior to sending it via email.\n- Email agent to send the actual emails\n- AI Agent Tool for getting user info from Severa PSA to get email addresses from severa\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -776,
+        -128
+      ],
+      "id": "9423cd55-4ede-402d-8cf8-7ba594849323",
+      "name": "Orchstrator agent"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "trjmFviqL4MaoRG2",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/trjmFviqL4MaoRG2",
+          "cachedResultName": "sub get severa users"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -1024,
+        304
+      ],
+      "id": "bc5b6e1d-fbb0-4a62-a692-faff18735805",
+      "name": "Call 'sub get severa users'"
+    },
+    {
+      "parameters": {
+        "toolDescription": "AI agent to look up user roles and email adresses from Severa PSA",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "Do not look up anything, just return topi.tuominen@heku.fi"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        -1168,
+        96
+      ],
+      "id": "22d779f2-6480-4c3b-b346-8869f35b06ae",
+      "name": "AI Agent Tool for getting user info from Severa PSA"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "19ca0a38-d2b2-4fd6-8726-234c0e67d2cf",
+              "name": "ohje",
+              "value": "=Koosta ja lähetä myyntijohtajalle asiakasraportti.\n\nRaportissa pitää olla seuraavat tiedot:\n- Asiakkaan nimi\n- liikevaihto edelliseltä täydeltä kuukaudelta summana ja miten liikevaihto jakautuu tulosyksiköiden välillä\n- liikevaihto edelliseltä viideltä kuukaudelta summana ja miten liikevaihto jakautuu tulosyksiköiden välillä\n- liikevahto edelliseltä 12 kuukaudelta summana ja miten liikevaihto jakautuu tulosyksiköiden välillä\n\nTee taulukko jossa :\nasiakkaan nimi | 1kk | 1kk muutos verrattuna vuosi sitten vastaavaan | 5kk | muutos vuodentakaiseen | 12kk | muutos vuoden takaiseen\nasiakkaan 2 nimi | 1kk | 1kk muutos verrattuna vuosi sitten vastaavaan | 5kk | muutos vuodentakaiseen | 12kk | muutos vuoden takaiseen\n\nJos esität asiakaskohtaisia tietoja, esitä ne myös saman mallisessa taulukossa.\n\nJätä tyhjät tiedot 0€ merkinnälle, älä lisää mitään tietoon.\n\nLähetä tiedot sähköpostilla myyntijohtajalle.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1808,
+        -400
+      ],
+      "id": "04c45abe-59db-4f11-94b1-320168b9631a",
+      "name": "Asiakasraportti"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "Ja5Hz1RZz2wHZ8qR",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/Ja5Hz1RZz2wHZ8qR",
+          "cachedResultName": "sub send html to slack as a excel"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        784,
+        304
+      ],
+      "id": "66b8bb58-7be5-44bb-a230-deca87cb7d6c",
+      "name": "Call 'sub send html to slack as a excel'"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "19ca0a38-d2b2-4fd6-8726-234c0e67d2cf",
+              "name": "ohje",
+              "value": "Laadi viikkokooste kuluneen viikon tuntikirjauksista ja lähetä se sähköpostissa projektipäälliköille.\n\nLooginen järjestys:\n\n- koosta tiedot vain aktiivisita projekteista raporteiksi projektipäälliköittäin\n- älä ota tarjouksia tai liidejä mukaan\n- lähetä tiedot sähköpostilla projektipäälliköille joka on määritelty Severan projektin tiedoissa\n\nVaatimukset:\n\t1.\tHae kaikki tuntikirjaukset aikaväliltä maanantai 00:00 – sunnuntai 23:59 (kulunut viikko) käyttäen organisaation paikallista aikavyöhykettä.\n\t2.\tRyhmittele kirjaukset projekteittain ja laske:\n\t•\ttehtyjen tuntien summa per projekti\n\t•\t(jos data saatavilla) tuntien summa per projektin projektipäällikkö / vastuuhenkilö\n\t3.\tLaadi selkeä raportti suomeksi, jossa on:\n\t•\totsikko: “Viikkokooste tuntikirjauksista (VVVV-WW)”\n\t•\tyhteenveto: kokonais­tunnit viikon ajalta\n\t•\ttaulukko: Projekti | Tunnit (h) | Kirjauksia (kpl) | (valinnainen) Top 3 tekijää / käyttäjää ja heidän tuntinsa\n\t•\thuomio-osio puuttuvista tai epäselvistä kirjauksista (esim. projekti puuttuu, 0h, puuttuva käyttäjä)\n\t4.\tLähetä kooste sähköpostilla jokaiselle projektipäällikölle niin, että kukin projektipäällikkö saa:\n\t•\tkaikki projektit, joista hän on vastuussa\n\t•\tlisäksi “Kaikki projektit” -koosteen voi lähettää myös yleiseen PM-jakeluun, jos sellainen osoite löytyy\n\t5.\tSähköpostin rakenne:\n\t•\tAihe: “Viikkokooste tuntikirjauksista (VVVV-WW)”\n\t•\tSisältö: lyhyt yhteenveto + taulukko(t) + linkki lähdedataan (jos saatavilla)\n\t6.\tJos yhdelläkään projektilla ei ole tuntikirjauksia viikolla, lähetä silti viesti: “Ei tuntikirjauksia tältä viikolta.”\n\nTuotos:\n\t•\tPalauta lopuksi myös koneellisesti luettava JSON-yhteenveto muodossa:\n{\n“week”: “YYYY-WW”,\n“totalHours”: number,\n“projects”: [\n{\n“projectId”: “…”,\n“projectName”: “…”,\n“hours”: number,\n“entries”: number,\n“pmEmails”: [”…”],\n“topContributors”: [{“name”:”…”,“hours”:number}]\n}\n],\n“anomalies”: [{“type”:”…”,“count”:number,“examples”:[…]}]\n}\n\nPidä kieli suomeksi ja raportti selkeänä.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1808,
+        -16
+      ],
+      "id": "324718d3-4ff8-4fc9-8729-e380dfdf8993",
+      "name": "Projektipäällikkö tuntikirjaus kooste1"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "For3EYd2u4bxmDKI",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/For3EYd2u4bxmDKI",
+          "cachedResultName": "sub get severa work hours"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -768,
+        304
+      ],
+      "id": "e66c2aa8-2245-4fbf-ab93-ebeca27d0ac1",
+      "name": "Call 'sub get severa work hours'"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1584,
+        96
+      ],
+      "id": "562e54d3-e105-46b3-874a-e979f5515808",
+      "name": "Big brain on Brad",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "7hvfL2Uf6WTL5asr",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/7hvfL2Uf6WTL5asr",
+          "cachedResultName": "sub get severa sales"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -640,
+        304
+      ],
+      "id": "295eeebd-9a05-40bc-a4b9-11734912557b",
+      "name": "Call 'sub get severa invoices'"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Business controller agent in charge of gathering information from PSA system",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Rooli\nToimit yrityksen business controllerina ja käytät ainoastaan Severa PSA -järjestelmästä (tämän n8n-solmun kautta) saatavaa dataa.\n\n# Kieli ja muoto\n- Vastaa aina suomeksi.\n- Palauta AINA pelkkä JSON — ei selityksiä, ei kommentteja, ei markdown-koodiblockeja.\n- Älä lisää oletuksia, suosituksia tai yleistietoa. Raportoi vain se, mitä saat työkaluista.\n\n# Tulostemuoto\nPalauta AINA seuraavan JSON-skeeman mukainen objekti:\n\n{\n  \"report_meta\": {\n    \"period_start\": \"YYYY-MM-DD\",\n    \"period_end\": \"YYYY-MM-DD\",\n    \"generated_at\": \"ISO8601\",\n    \"source\": \"Severa PSA / n8n\",\n    \"requested_by\": \"business_controller_agent\"\n  },\n  \"won_deals\": {\n    \"available\": true | false,\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"customer\": \"string\",\n        \"value_eur\": number | null,\n        \"closed_date\": \"YYYY-MM-DD | null\",\n        \"owner\": \"string | null\"\n      }\n    ],\n    \"total_eur\": number\n  },\n  \"new_customers\": {\n    \"available\": true | false,\n    \"note\": \"string | null\",\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"created_at\": \"ISO8601 | null\",\n        \"owner\": \"string | null\"\n      }\n    ]\n  },\n  \"invoicing\": {\n    \"available\": true | false,\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"customer\": \"string\",\n        \"project\": \"string | null\",\n        \"amount_eur\": number | null,\n        \"sent_date\": \"YYYY-MM-DD | null\",\n        \"status\": \"string | null\"\n      }\n    ],\n    \"total_eur\": number\n  },\n  \"top_customers\": {\n    \"available\": true | false,\n    \"items\": [\n      {\n        \"rank\": number,\n        \"customer\": \"string\",\n        \"total_eur\": number | null\n      }\n    ]\n  },\n  \"open_projects\": {\n    \"available\": true | false,\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"customer\": \"string\",\n        \"status\": \"string | null\",\n        \"project_manager\": \"string | null\",\n        \"start_date\": \"YYYY-MM-DD | null\",\n        \"end_date\": \"YYYY-MM-DD | null\",\n        \"value_eur\": number | null\n      }\n    ]\n  },\n  \"open_leads\": {\n    \"available\": true | false,\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"customer\": \"string\",\n        \"status\": \"string\",\n        \"created_at\": \"ISO8601 | null\",\n        \"value_eur\": number | null,\n        \"owner\": \"string | null\",\n        \"estimated_close_date\": \"YYYY-MM-DD | null\"\n      }\n    ]\n  },\n  \"open_offers\": {\n    \"available\": true | false,\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"customer\": \"string\",\n        \"status\": \"string | null\",\n        \"value_eur\": number | null,\n        \"owner\": \"string | null\",\n        \"estimated_close_date\": \"YYYY-MM-DD | null\"\n      }\n    ],\n    \"total_eur\": number\n  }\n}\n\n# Säännöt\n- Käytä aina summia ilman arvonlisäveroa (ALV 0 %). Jos järjestelmä palauttaa vain ALV:llisen summan, aseta arvo null ja lisää note-kenttään \"ALV 0 % -summa ei saatavilla\".\n- Jos osion data ei ole saatavilla teknisen syyn vuoksi, aseta available: false ja lisää note-kenttään syy (esim. \"Työnkulku ei aktiivinen\").\n- Jos osio on toiminnallisesti tyhjä (ei tuloksia jaksolla), aseta available: false ja items: [].\n- Älä koskaan arvaa tai täytä kenttiä oletusarvoilla — käytä null jos tieto puuttuu.\n- Järjestä top_customers rank-kentän mukaan (1–10).\n- Järjestä open_projects, open_leads ja open_offers asiakkaan nimen mukaan A–Ö.\n- total_eur-kenttä on aina number. Jos yhtään arvoa ei ole saatavilla, palauta 0.\n- Kaikki päivämäärät ISO 8601 -formaatissa.\n- UUID-kentät (id) sellaisenaan kuten Severa palauttaa.\n\n# Tärkeää\nKäytä vain tämän n8n-solmun tarjoamia työkaluja ja rajapintoja.\nÄlä kysele mielipidettä — tee pyydetty tehtävä.\n\nIMPORTANT: For your response to user, you MUST use the `format_final_json_response` tool with your complete answer formatted according to the required schema. Do not attempt to format the JSON manually - always use this tool. Your response will be rejected if it is not properly formatted through this tool. Only use this tool once you are ready to provide your final answer."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        -336,
+        96
+      ],
+      "id": "3c3ef869-2fea-418a-89fa-04f0e3eb496d",
+      "name": "Business controller agent"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "JFuSREq2mstms8yV",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/JFuSREq2mstms8yV",
+          "cachedResultName": "sub get severa resource allocations"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -512,
+        304
+      ],
+      "id": "7696eb31-d691-449a-84cf-50fecea67b31",
+      "name": "Call 'sub get severa resource allocations'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "M39gqLKBytM30nUN",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/M39gqLKBytM30nUN",
+          "cachedResultName": "sub get severa customers"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -384,
+        304
+      ],
+      "id": "c68740c0-b1d8-4412-ac7a-720f278ec4c8",
+      "name": "Call 'sub get severa customers'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "For3EYd2u4bxmDKI",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/For3EYd2u4bxmDKI",
+          "cachedResultName": "sub get severa work hours"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -256,
+        304
+      ],
+      "id": "83a0248d-08ff-4998-838d-563d0f8417aa",
+      "name": "Call 'sub get severa proposal rows'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "QT5OUvrLL1w3hDo9",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/QT5OUvrLL1w3hDo9",
+          "cachedResultName": "sub get severa sales cases"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -128,
+        304
+      ],
+      "id": "5f93fe94-ca08-4789-8ee5-bb69886f63b3",
+      "name": "Call 'sub get severa sales cases'"
+    },
+    {
+      "parameters": {
+        "description": "=Tee kooste näistä kaikista tiedoista mitä syöte pyytää. mieti mitä kaikkea siihen tarvitsee ja koosta ne."
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        304
+      ],
+      "id": "476a7240-cc01-422e-b60c-6d158f8b0c21",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "5Tb3KNEKc3eD8IJs",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/5Tb3KNEKc3eD8IJs",
+          "cachedResultName": "sub get severa proposals"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        128,
+        304
+      ],
+      "id": "0c84dd16-1d0f-4f99-95be-5600828658b2",
+      "name": "Call 'sub get severa proposals'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "pi3QCkAr6TysZzsD",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/pi3QCkAr6TysZzsD",
+          "cachedResultName": "sub get severa projects"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [
+            "Input"
+          ],
+          "schema": [
+            {
+              "id": "Input",
+              "displayName": "Input",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        304
+      ],
+      "id": "5c526cec-1c63-48d6-b038-31e7ebe827be",
+      "name": "Call 'sub get severa projects'"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1072,
+        560
+      ],
+      "id": "4a911457-2143-447c-839e-867a3f7ae393",
+      "name": "Business controller brain",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1440,
+        304
+      ],
+      "id": "942aa0e1-06a3-48b4-8a87-910525366641",
+      "name": "Email agent brain",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1168,
+        304
+      ],
+      "id": "f31d692b-a69d-4f09-a65e-e65634727265",
+      "name": "Contact book Agent brain",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $now.toFormat('dd-MM-yyyy') }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        304
+      ],
+      "id": "a5a521ad-073b-458c-8f7a-59f8d426bd66",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2256,
+        -80
+      ],
+      "id": "daa24305-4faa-4cc2-a342-cc325466ff55",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.User }}",
+                    "rightValue": "1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "b8700f97-f23c-4b0d-b717-7e0edb27e67b"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c39fc6c0-dbc6-4859-9aad-e96f169866ee",
+                    "leftValue": "={{ $json.User }}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "9d4d27ee-7054-4def-ae73-852c575875e5",
+                    "leftValue": "={{ $json.User }}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "a8663980-d27e-438f-8ebc-73a2b05c69d8",
+                    "leftValue": "={{ $json.User }}",
+                    "rightValue": "4",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -2032,
+        -112
+      ],
+      "id": "be40417b-e61d-4494-b15e-f2787252b2f7",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        512,
+        304
+      ],
+      "id": "0720fbcf-b620-47d0-b2c7-d36d01716030",
+      "name": "Contact book Agent brain2",
+      "credentials": {
+        "openAiApi": {
+          "id": "lymwGoIItinvgkKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        560,
+        96
+      ],
+      "id": "0d3bbb0f-023d-4fd6-95ad-1bc11a20cb29",
+      "name": "Slack comms AI agent"
+    },
+    {
+      "parameters": {
+        "model": "anthropic/claude-sonnet-4.6",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        912,
+        304
+      ],
+      "id": "92251603-6714-409c-a3d7-dace0361069e",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "xjmkf6MlkzAePxNK",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $today }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1040,
+        304
+      ],
+      "id": "8b859701-76fc-4da0-a643-abc3ec36415c",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "toolDescription": "I'm a QA agent to ensure that the report is what it needed to be.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "# Rooli\nOlet myyntiraportin QA-agentti. Tehtäväsi on validoida viikoittainen myyntiraportti JSON-muodossa ja tuottaa strukturoitu kritiikkiraportti havainnoistasi.\n\n# Syöte\nSaat JSON-objektin, joka noudattaa seuraavaa rakennetta:\n- report_meta: raportin metatiedot (jakso, aikaleima, lähde)\n- won_deals: voitetut kaupat\n- new_customers: uudet asiakkuudet\n- invoicing: laskutus\n- top_customers: top-asiakkaat\n- open_projects: avoimet projektit\n- open_leads: avoimet liidit\n- open_offers: avoimet tarjoukset\n\n# Tehtävät\n\n## 1. Datan laadun tarkistus\nTarkista jokaisesta osiosta:\n- Onko `available: false` ilman selitystä? (varoitus, ellei `note`-kenttä sisällä syytä)\n- Puuttuvatko pakolliset kentät (id, name, customer, status, dates)?\n- Onko päivämäärät ISO 8601 -formaatissa?\n- Sisältääkö `open_leads` rivejä, joilla ei ole `value_eur`-arvoa?\n- Onko `open_projects` rivejä, joilla ei ole `end_date`? (merkitse avoimeksi/toistuvaksi)\n- Onko `report_meta.period_start` ja `period_end` loogisia (alku ennen loppua)?\n- Onko saman UUID:n käyttö useammassa osiossa? (mahdollinen datavirhe)\n\n## 2. Liiketoiminnallinen analyysi\nArvioi kriittisesti:\n- Jos `won_deals.available: false` JA `open_offers.available: false` samalla jaksolla → varoitus: ei myyntiaktiviteettia\n- Jos `invoicing.available: false` → varoitus: laskutusdata puuttuu, tarkista CRM/laskutusjärjestelmä\n- Jos `new_customers.available: false` ja `note` viittaa tekniseen ongelmaan → varoitus: automaation ongelma\n- Laske avointen liidien yhteisarvo (EUR) niistä, joilla arvo on saatavilla\n- Merkitse liidit, jotka ovat yli 60 päivää vanhoja (käytä `report_meta.period_end` vertailukohtana)\n- Arvioi, onko raporttijakso looginen (5 arkipäivää, ei viikonloppuja)\n\n## 3. Puuttuvien tietojen luokittelu\nLuokittele puuttuvat tiedot:\n- `DATA_MISSING`: normaalia, ei tuloksia jaksolla\n- `SYSTEM_ERROR`: tekninen vika (maininta workflowsta, ei aktiivinen jne.)\n- `CONFIG_WARNING`: konfiguraatio-ongelma, vaatii toimenpiteitä\n\n# Tuloste\nPalauta AINA JSON seuraavassa muodossa:\n```\n{\n  \"qa_summary\": {\n    \"report_period\": \"2026-03-16 – 2026-03-20\",\n    \"validated_at\": \"2026-03-24T00:00:00+02:00\",\n    \"overall_status\": \"ERROR\",\n    \"issue_count\": 4,\n    \"warning_count\": 5\n  },\n  \"section_results\": [\n    {\n      \"section\": \"won_deals\",\n      \"status\": \"WARNING\",\n      \"classification\": \"DATA_MISSING\",\n      \"findings\": [\"Ei voitettuja kauppoja jaksolla. Järjestelmä ei palauta virhettä.\"],\n      \"recommended_action\": \"Tarkista Severasta manuaalisesti, onko kauppoja kirjattu väärälle jaksolle.\"\n    },\n    {\n      \"section\": \"new_customers\",\n      \"status\": \"ERROR\",\n      \"classification\": \"SYSTEM_ERROR\",\n      \"findings\": [\"Asiakashaku-työnkulku ei aktiivinen. Data kokonaan puuttuu, ei vain tyhjä tulos.\"],\n      \"recommended_action\": \"Aktivoi asiakashaku-työnkulku n8n:ssä. Tarkista Severa API -yhteys.\"\n    },\n    {\n      \"section\": \"invoicing\",\n      \"status\": \"WARNING\",\n      \"classification\": \"DATA_MISSING\",\n      \"findings\": [\"Ei laskutuksia jaksolla. Tarkista onko laskuja luonnos-tilassa tai lähettämättä.\"],\n      \"recommended_action\": \"Varmista Severasta, ettei laskuja ole jumissa lähettämättöminä.\"\n    },\n    {\n      \"section\": \"top_customers\",\n      \"status\": \"ERROR\",\n      \"classification\": \"DATA_MISSING\",\n      \"findings\": [\"Top 10 -asiakasdata puuttuu kokonaan. Pyyntö tehtiin mutta tulosta ei palautunut.\"],\n      \"recommended_action\": \"Tarkista Severa-raportin konfiguraatio sisäiselle myyntidatalle.\"\n    },\n    {\n      \"section\": \"open_projects\",\n      \"status\": \"WARNING\",\n      \"classification\": null,\n      \"findings\": [\n        \"Projekti 'Automaatio himmeli' (278972e4): status-kenttä null — ei tilaa määritetty.\",\n        \"Projekti 'Automaatio himmeli' (278972e4): end_date puuttuu — avointa/toistuvaa työtä vai puuttuva tieto?\",\n        \"Projekti 'Jatkuva tekeminen' päättyy 2026-03-20 — raporttijakson viimeinen päivä. Onko projekti suljettu?\",\n        \"Kummankaan projektin value_eur ei saatavilla.\"\n      ],\n      \"recommended_action\": \"Päivitä projektien statukset ja päättymispäivät Severaan. Tarkista 'Jatkuva tekeminen' sulkeminen.\"\n    },\n    {\n      \"section\": \"open_leads\",\n      \"status\": \"WARNING\",\n      \"classification\": null,\n      \"findings\": [\n        \"Liidi 'Uusi liiketoimintamalli' (408f30dc): luotu 2025-11-27 — yli 117 päivää vanha. Vaatii toimenpiteen.\",\n        \"Liidi 'Automaatio himmeli' (278972e4): value_eur puuttuu.\",\n        \"Kummallakin liidillä owner ja estimated_close_date puuttuvat.\",\n        \"UUID 278972e4-d513-c0ae-fb05-cee62277a1bc esiintyy sekä open_projects- että open_leads-osioissa — mahdollinen datavirhe Severassa.\"\n      ],\n      \"recommended_action\": \"Tarkista duplikaatti-UUID Severasta. Lisää omistaja ja arvioitu päätöspäivä molemmille liideille.\"\n    },\n    {\n      \"section\": \"open_offers\",\n      \"status\": \"OK\",\n      \"classification\": \"DATA_MISSING\",\n      \"findings\": [\"Ei avoimia tarjouksia jaksolla.\"],\n      \"recommended_action\": null\n    }\n  ],\n  \"business_insights\": {\n    \"open_leads_total_eur\": 15000,\n    \"leads_over_60_days\": [\n      \"Uusi liiketoimintamalli / 408f30dc-97f9-cdb8-be24-5a506e3d3a7b (117 pv)\"\n    ],\n    \"duplicate_ids_found\": [\n      \"278972e4-d513-c0ae-fb05-cee62277a1bc (esiintyy open_projects ja open_leads -osioissa)\"\n    ],\n    \"missing_end_dates\": [\n      \"Automaatio himmeli / 278972e4-d513-c0ae-fb05-cee62277a1bc\"\n    ],\n    \"commentary\": \"Raporttijakso on looginen (ma–pe). Kriittisin löydös: asiakashaku-työnkulku ei toimi, mikä tarkoittaa että uusien asiakkuuksien seuranta on kokonaan pimeänä. Lisäksi duplikaatti-UUID viittaa Severa-datan yhtenäisyysongelmaan — sama kohde näkyy sekä projektina että liidina. Avointen liidien arvo on vähintään 15 000 € (yksi liidi ilman arvoa).\"\n  },\n  \"escalation_required\": true,\n  \"escalation_reason\": \"Kaksi kriittistä virhettä: (1) asiakashaku-työnkulku ei aktiivinen — new_customers-data puuttuu kokonaan. (2) Duplikaatti-UUID 278972e4 eri osioissa viittaa Severa-datan virheeseen, joka voi vääristää muutakin raportointia.\"\n}\n```\n\n# Käyttäytymissäännöt\n- ÄLÄ muuta alkuperäistä dataa\n- ÄLÄ tee oletuksia puuttuvasta datasta — merkitse se selkeästi\n- Ole tarkka päivämäärien laskennassa\n- Käytä suomea `commentary`- ja `recommended_action`-kentissä\n- Jos `escalation_required: true`, selitä syy yksiselitteisesti\n- Palauta VAIN JSON, ei muuta tekstiä"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        896,
+        96
+      ],
+      "id": "70250b9b-334e-4402-9491-9250c1325917",
+      "name": "QA and Critic Agent"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "fKGhzmGAaX5tfRRV",
+    "timezone": "Europe/Helsinki",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-20T11:14:33.042Z",
+      "createdAt": "2026-02-20T11:14:33.042Z",
+      "role": "workflow:owner",
+      "workflowId": "sxYgKSwILRAwP5Ws",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    },
+    {
+      "updatedAt": "2026-02-23T10:45:08.199Z",
+      "createdAt": "2026-02-23T10:45:08.199Z",
+      "id": "T5GGgIFcBuHl9RTM",
+      "name": "severa"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-24T11:46:21.168Z",
+  "versionId": "1adee34b-f4a4-4dc0-b259-43075e4a98cb"
+}
