@@ -1,0 +1,723 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "SWOT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Henkilöresursit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "SEO Machine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SWOT": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "severa calls",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-08T08:47:47.873Z",
+  "id": "dCPfEOVGOPbNa1Ps",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "HekuHelper - slack webhook controller",
+  "nodes": [
+    {
+      "parameters": {
+        "trigger": [
+          "app_mention"
+        ],
+        "channelId": {
+          "__rl": true,
+          "value": "C0A789UCP4M",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        -16
+      ],
+      "id": "631004f7-a512-4bd0-a139-d963c5e6d09a",
+      "name": "Slack Trigger",
+      "webhookId": "1518487b-c449-44b5-b1de-6c7559c07278",
+      "credentials": {
+        "slackApi": {
+          "id": "KnCjsoY7FV63BKyO",
+          "name": "helper"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get input text from nested path\nconst inputText = $input.first().json.blocks[0].elements[0].elements[1].text;\n\n// Check if input is a string\nif (typeof inputText !== 'string') {\n  return {\n    json: {\n      output: inputText || '',\n      error: 'Input is not a string'\n    }\n  };\n}\n\n// Remove first word by splitting on whitespace, removing first element, and joining\nconst words = inputText.trim().split(/\\s+/);\nconst textWithoutFirstWord = words.slice(1).join(' ');\n\n// Return the text without first word\nreturn {\n  json: {\n    output: textWithoutFirstWord\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        144,
+        32
+      ],
+      "id": "d74a3cfc-bb0d-4d15-b954-605f5e3d0b4d",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "549e9ac6-af5c-41d6-8f42-c58e7f4aa69a",
+              "name": "Sender",
+              "value": "={{ $('Slack Trigger').item.json.user }}",
+              "type": "string"
+            },
+            {
+              "id": "019c326c-a8dd-486e-a673-d4e826f7d7b8",
+              "name": "Company",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        32
+      ],
+      "id": "e7863fa1-b5fe-477a-91bd-6392bf2bfb13",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get input text from nested path\n\nconst inputText = $input.first().json.blocks[0].elements[0].elements[1].text;\n// Check if input is a string\nif (typeof inputText !== 'string') {\n  return {\n    json: {\n      output: inputText || '',\n      error: 'Input is not a string'\n    }\n  };\n}\n\n// Remove first word by splitting on whitespace, removing first element, and joining\nconst words = inputText.trim().split(/\\s+/);\nconst textWithoutFirstWord = words.slice(1).join(' ');\n\n// Return the text without first word\nreturn {\n  json: {\n    output: textWithoutFirstWord\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        144,
+        -208
+      ],
+      "id": "aaeab81a-e102-4a6e-be07-a7641408324f",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "549e9ac6-af5c-41d6-8f42-c58e7f4aa69a",
+              "name": "Sender",
+              "value": "={{ $('Slack Trigger').item.json.user }}",
+              "type": "string"
+            },
+            {
+              "id": "019c326c-a8dd-486e-a673-d4e826f7d7b8",
+              "name": "User",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        432,
+        -208
+      ],
+      "id": "248738c0-0b0d-4352-99af-cc1114448f8b",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "= {{ $json.blocks[0].elements[0].elements[1].text }}",
+                    "rightValue": "allocation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "a8a0b236-1dbf-4f79-9e2f-b50e5dc3a6a5"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "214b85c2-8b1d-4b9f-874a-4ae0d354da4e",
+                    "leftValue": "= {{ $json.blocks[0].elements[0].elements[1].text }}",
+                    "rightValue": "company",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "139f6b1d-8c43-4f9e-9b30-ec52a340a7c4",
+                    "leftValue": "= {{ $json.blocks[0].elements[0].elements[1].text }}",
+                    "rightValue": "swot",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c68df6e1-3805-4efc-be4a-3598aaf6f8e5",
+                    "leftValue": "= {{ $json.blocks[0].elements[0].elements[1].text }}",
+                    "rightValue": "seo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "e11c1f12-2587-476b-acaf-812da59f4623",
+                    "leftValue": "= {{ $json.blocks[0].elements[0].elements[1].text }}",
+                    "rightValue": "severa",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -176,
+        -64
+      ],
+      "id": "d4824897-1a34-4170-86f1-aad542d4348c",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = items[0].json;\n\nlet email = '';\nlet url = '';\n\nconst collectFromArray = (arr) => {\n\tfor (const part of arr || []) {\n\t\tif (!part || typeof part !== 'object') continue;\n\n\t\tif (part.type === 'link' && typeof part.url === 'string') {\n\t\t\tconst rawUrl = part.url.trim();\n\t\t\tconst text = (part.text || '').trim();\n\n\t\t\tif (!email && rawUrl.startsWith('mailto:')) {\n\t\t\t\temail = rawUrl.replace('mailto:', '').trim() || email;\n\t\t\t\tif (!email && text.includes('@')) email = text;\n\t\t\t}\n\n\t\t\tif (!url && (rawUrl.startsWith('http://') || rawUrl.startsWith('https://'))) {\n\t\t\t\turl = rawUrl;\n\t\t\t\tif (!url && text) url = text;\n\t\t\t}\n\t\t}\n\n\t\tif (!email || !url) {\n\t\t\tif (Array.isArray(part.elements)) collectFromArray(part.elements);\n\t\t\tif (Array.isArray(part.blocks)) collectFromArray(part.blocks);\n\t\t\tif (Array.isArray(part.attachments)) collectFromArray(part.attachments);\n\t\t}\n\n\t\tif (email && url) return;\n\t}\n};\n\ncollectFromArray(data.blocks);\ncollectFromArray(data.event?.blocks);\ncollectFromArray(data.message?.blocks);\ncollectFromArray(data.elements);\ncollectFromArray(data.attachments);\n\nreturn [\n\t{\n\t\tjson: { email, url },\n\t},\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        144,
+        240
+      ],
+      "id": "bc3c62a9-9891-4a3f-9cd4-a715eacf12cc",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "549e9ac6-af5c-41d6-8f42-c58e7f4aa69a",
+              "name": "requester",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "019c326c-a8dd-486e-a673-d4e826f7d7b8",
+              "name": "url",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        240
+      ],
+      "id": "f8cc33f1-4524-4b00-8200-554b214c3eb4",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "rOsrUsiXSfLp1VesJKy-F",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/rOsrUsiXSfLp1VesJKy-F",
+          "cachedResultName": "SEO Machine"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Requester": "={{ $json.requester }}",
+            "url": "={{ $json.url }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Requester",
+              "displayName": "Requester",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        240
+      ],
+      "id": "1c18f0a7-6bd3-48e6-8b7b-e65d819d4dc0",
+      "name": "SEO Machine"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "vm8yBOrFLkEPSywQuRNmu",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/vm8yBOrFLkEPSywQuRNmu",
+          "cachedResultName": "SubWorkflow - Swot"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Sender",
+              "displayName": "Sender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        32
+      ],
+      "id": "3148441d-a4bd-4f57-983e-c33255ea4626",
+      "name": "SWOT"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "mToaQJt0QhX0zkC6",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/mToaQJt0QhX0zkC6",
+          "cachedResultName": "SubWorkflow - On call henkilöresurssit"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        -208
+      ],
+      "id": "781e1430-edf0-4af0-a742-10ef017905b2",
+      "name": "Henkilöresursit"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get input text from nested path\n\nconst inputText = $input.first().json.blocks[0].elements[0].elements[1].text;\n// Check if input is a string\nif (typeof inputText !== 'string') {\n  return {\n    json: {\n      output: inputText || '',\n      error: 'Input is not a string'\n    }\n  };\n}\n\n// Remove first word by splitting on whitespace, removing first element, and joining\nconst words = inputText.trim().split(/\\s+/);\nconst textWithoutFirstWord = words.slice(1).join(' ');\n\n// Return the text without first word\nreturn {\n  json: {\n    output: textWithoutFirstWord\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        512
+      ],
+      "id": "463c9e46-d579-45f5-93fe-4cd163073afb",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "549e9ac6-af5c-41d6-8f42-c58e7f4aa69a",
+              "name": "Sender",
+              "value": "={{ $('Slack Trigger').item.json.user }}",
+              "type": "string"
+            },
+            {
+              "id": "019c326c-a8dd-486e-a673-d4e826f7d7b8",
+              "name": "User",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        448,
+        528
+      ],
+      "id": "2288b8fe-ebef-4850-bbd9-0e305d94ef3e",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "sxYgKSwILRAwP5Ws",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/sxYgKSwILRAwP5Ws",
+          "cachedResultName": "Severa kysely"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        528
+      ],
+      "id": "4ecb6216-4f9a-464a-8e9c-2d090ca4eb01",
+      "name": "severa calls"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0A789UCP4M",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "text": "=HekuHelper has these options\n- allocations name > get current week allocations\n- company name  > Swot analycis\n- swot name > Swot analycis\n- seo webisite > seo report \n- severa 1 - Myyntijohtajan asiakasraportti\n- severa 2 - Resurssiallokaatio raportti\n- severa 3 - Tuntikirjauskooste raportti\n- severa 4 - Myyntijohtajan viikkoraportti",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -112,
+        368
+      ],
+      "id": "8aa75639-f651-43f4-9a3e-e288469a1227",
+      "name": "Send a message",
+      "webhookId": "11028f9b-7402-41b5-adf5-377507bfe6fd",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "xk64iVuu22yHYOAw",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-08T08:47:47.907Z",
+      "createdAt": "2026-01-08T08:47:47.907Z",
+      "role": "workflow:owner",
+      "workflowId": "dCPfEOVGOPbNa1Ps",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-25T15:24:30.760Z",
+  "versionId": "0b33bc93-459e-4a4c-b7c6-159b50533451"
+}
