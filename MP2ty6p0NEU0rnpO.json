@@ -1,0 +1,439 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Group by list": {
+      "main": [
+        [
+          {
+            "node": "Format html",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map listname, card name and url": {
+      "main": [
+        [
+          {
+            "node": "Call 'Board-käyttäjät'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List all lists and their id's": {
+      "main": [
+        [
+          {
+            "node": "Get all cards in a list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format html": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many lists": {
+      "main": [
+        [
+          {
+            "node": "Get a list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all cards in a list": {
+      "main": [
+        [
+          {
+            "node": "Map listname, card name and url",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a list": {
+      "main": [
+        [
+          {
+            "node": "List all lists and their id's",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a board": {
+      "main": [
+        [
+          {
+            "node": "Get many lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get a board",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get a board",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'Board-käyttäjät'": {
+      "main": [
+        [
+          {
+            "node": "Group by list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-13T12:26:45.042Z",
+  "id": "MP2ty6p0NEU0rnpO",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Trello status to email",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "/**\n * n8n Code Node — Format grouped Trello data as HTML for Gmail\n * Set mode: Run Once for All Items\n */\n\nconst input = $input.first().json;\nconst groups = Array.isArray(input) ? input : (input.data ?? input.groups ?? $input.all().map((i) => i.json));\n\nfunction escapeHtml(str) {\n  if (str == null) return '';\n  return String(str)\n    .replace(/&/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;')\n    .replace(/\"/g, '&quot;');\n}\n\nconst sections = groups.map((group) => {\n  const listName = escapeHtml(group.listName || 'Untitled');\n  const items = (group.items || []).map(\n    (item) =>\n      `<tr>\n        <td style=\"padding: 8px 12px; border-bottom: 1px solid #e8e8e8;\">\n          <a href=\"${escapeHtml(item.url || '#')}\" style=\"color: #0066cc; text-decoration: none;\">${escapeHtml(item.name || 'Untitled')}</a> <span>${escapeHtml(item.userNames || 'Untitled')}</span>\n        </td>\n      </tr>`\n  ).join('');\n\n  return `\n    <div style=\"margin-bottom: 24px;\">\n      <h2 style=\"margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #172b4d;\">${listName}</h2>\n      <table style=\"width: 100%; border-collapse: collapse; background: #fafafa; border-radius: 8px; overflow: hidden;\">\n        ${items}\n      </table>\n    </div>\n  `;\n}).join('');\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"margin: 0; padding: 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; line-height: 1.5; color: #333;\">\n  <div style=\"max-width: 600px; margin: 0 auto;\">\n    <h1 style=\"margin: 0 0 24px 0; font-size: 22px; font-weight: 600; color: #172b4d;\">Trello Board Update</h1>\n    ${sections}\n    <p style=\"margin-top: 24px; font-size: 13px; color: #6b778c;\">— Sent via Automagic</p>\n  </div>\n</body>\n</html>\n`.trim();\n\nreturn [{ json: { html } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1936,
+        0
+      ],
+      "id": "77b5d4ca-d51e-4c29-a038-497e766a0f95",
+      "name": "Format html"
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * n8n Code Node — Group Trello items by listName\n * Output: one item per list, each with listName and items[] (all fields preserved)\n * Set mode: Run Once for All Items\n */\n\nconst input = $input.first().json;\nconst items = Array.isArray(input) ? input : (input.data ?? input.items ?? $input.all().map((i) => i.json));\n\nconst groups = {};\nfor (const item of items) {\n  const key = item.listName ?? item.name ?? 'Unknown';\n  if (!groups[key]) groups[key] = [];\n  groups[key].push({ ...item });\n}\n\nconst result = Object.entries(groups).map(([listName, items]) => ({\n  json: {\n    listName,\n    items,\n  },\n}));\n\nreturn result;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1712,
+        0
+      ],
+      "id": "6b9396f6-61e9-4383-82b9-c4a1f4ee8c3f",
+      "name": "Group by list"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "97b59221-518b-4297-96af-f83e49a06fdd",
+              "name": "listName",
+              "value": "={{ $('List all lists and their id\\'s').item.json.listName }}",
+              "type": "string"
+            },
+            {
+              "id": "72a886ee-7a70-420c-bfa3-9cbe9e36c60e",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "89a46ee4-fff4-448b-b31e-f1d2d44e4df6",
+              "name": "url",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            },
+            {
+              "id": "3b6149c3-8a8d-4d35-8959-5a3d6fb875a5",
+              "name": "Users",
+              "value": "={{ $json.idMembers }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1280,
+        0
+      ],
+      "id": "1896ddb5-253e-4474-9cca-2529256bd56e",
+      "name": "Map listname, card name and url"
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * n8n Code Node — Trello List: Extract all listIDs and listNames\n * Set mode: Run Once for All Items\n */\n\nconst first = $input.first().json;\nlet items = Array.isArray(first) ? first : (first?.data ?? first?.lists ?? null);\nif (!items) {\n  items = $input.all().map((i) => i.json);\n}\n\nconst result = items.map((item) => ({\n  listID: item.id,\n  listName: item.name,\n}));\n\nreturn result.map((item) => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "aa62b41b-4f65-435d-9d1a-62f09d814fa3",
+      "name": "List all lists and their id's"
+    },
+    {
+      "parameters": {
+        "resource": "list",
+        "operation": "getAll",
+        "id": "={{ $json.id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        384,
+        0
+      ],
+      "id": "cc502329-818e-4f19-b74e-e510f893d842",
+      "name": "Get many lists",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "list",
+        "operation": "getCards",
+        "id": "={{ $json.listID }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        0
+      ],
+      "id": "25872c5a-de60-47a0-bf5f-c588fe63258f",
+      "name": "Get all cards in a list",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "list",
+        "operation": "get",
+        "id": "={{ $json.id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        608,
+        0
+      ],
+      "id": "71adbb20-4c8f-4146-aa88-cee2a4354df6",
+      "name": "Get a list",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "board",
+        "operation": "get",
+        "id": {
+          "__rl": true,
+          "value": "69b3fcba88c9caec3740c69f",
+          "mode": "list",
+          "cachedResultName": "Saavutettavuus",
+          "cachedResultUrl": "https://trello.com/b/gAty2kWQ/saavutettavuus"
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.trello",
+      "typeVersion": 1,
+      "position": [
+        160,
+        0
+      ],
+      "id": "efa554e3-efb0-4b7b-bdf4-f14dc001d000",
+      "name": "Get a board",
+      "credentials": {
+        "trelloApi": {
+          "id": "C3Rpom1ymc3puvvE",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -112
+      ],
+      "id": "36e5eceb-acf2-4943-967c-1f544f10c850",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -64,
+        64
+      ],
+      "id": "f003e4a0-59d6-4558-9e5f-c37eebb104ce",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "klvTd7X6z6j7RIvC",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/klvTd7X6z6j7RIvC",
+          "cachedResultName": "Board-käyttäjät"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1488,
+        0
+      ],
+      "id": "32925608-449a-403b-9dad-2e7c294b49c8",
+      "name": "Call 'Board-käyttäjät'"
+    },
+    {
+      "parameters": {
+        "toRecipients": "topi.tuominen@hekugroup.fi,leena.louhisola@heku.fi",
+        "subject": "Saavutettavuus projektin Trello status",
+        "bodyContent": "={{ $json.html }}",
+        "additionalFields": {
+          "bodyContentType": "html"
+        }
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2144,
+        0
+      ],
+      "id": "1af32551-9010-43ff-9ce1-00fceb149668",
+      "name": "Send a message1",
+      "webhookId": "d3027b9e-1e21-4352-8197-155709414d63",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "RpocyouzxZDj2JRc",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "gmail-tktuomin",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-13T12:26:45.045Z",
+      "createdAt": "2026-03-13T12:26:45.045Z",
+      "role": "workflow:owner",
+      "workflowId": "MP2ty6p0NEU0rnpO",
+      "projectId": "D8Ek1Ky4U6J3gusq"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-11-14T12:53:13.217Z",
+      "createdAt": "2025-11-14T12:53:13.217Z",
+      "id": "C10wIUBEqHR9Evc1",
+      "name": "issafe"
+    },
+    {
+      "updatedAt": "2026-03-17T13:09:35.922Z",
+      "createdAt": "2026-03-17T13:09:35.922Z",
+      "id": "wooKoGwh4QpXkCut",
+      "name": "Saavutettavuus"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-03-24T12:55:46.368Z",
+  "versionId": "15cc8dd5-ba5b-4bee-b5ad-dbf6d4bc6401"
+}
