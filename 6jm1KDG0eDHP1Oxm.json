@@ -47,11 +47,6 @@
         ]
       ]
     },
-    "Append or update row in sheet": {
-      "main": [
-        []
-      ]
-    },
     "Simple Memory": {
       "ai_memory": [
         [
@@ -192,6 +187,46 @@
     },
     {
       "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $today }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        784,
+        -208
+      ],
+      "id": "e9607787-4f52-444b-8822-b2c63b113144",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\n  \"author\":\"John Doe\",\n  \"original_post\":\"this is the original post\",\n  \"abstract\": \"this is an abstract of the post\",\n  \n  \"punchline\":\"Punchline of the post\",\n  \"meta_tags\":\"tag tag tag\",\n    \"categoriess\":\"AI Claude N8n\",\n  \"link\":\"https://www.linkedin.com/foobaar/post?123\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        912,
+        -208
+      ],
+      "id": "c5a822b5-b797-46ad-a562-baa87223406b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const p = item.json;\n  results.push({\n    json: {\n      postText: p.text || '',\n      authorName: p.authorName || '',\n      url: p.url || '',\n      numLikes: p.numLikes,\n      numComments: p.numComments\n    }\n  });\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        432,
+        -432
+      ],
+      "id": "07aa3abd-c73c-4590-a318-5745877aab68",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
@@ -311,46 +346,6 @@
           "name": "Google Sheets account"
         }
       }
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $today }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        784,
-        -208
-      ],
-      "id": "e9607787-4f52-444b-8822-b2c63b113144",
-      "name": "Simple Memory"
-    },
-    {
-      "parameters": {
-        "jsonSchemaExample": "{\n\t\n  \"author\":\"John Doe\",\n  \"original_post\":\"this is the original post\",\n  \"abstract\": \"this is an abstract of the post\",\n  \n  \"punchline\":\"Punchline of the post\",\n  \"meta_tags\":\"tag tag tag\",\n    \"categoriess\":\"AI Claude N8n\",\n  \"link\":\"https://www.linkedin.com/foobaar/post?123\"\n}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "typeVersion": 1.3,
-      "position": [
-        912,
-        -208
-      ],
-      "id": "c5a822b5-b797-46ad-a562-baa87223406b",
-      "name": "Structured Output Parser"
-    },
-    {
-      "parameters": {
-        "jsCode": "const items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const p = item.json;\n  results.push({\n    json: {\n      postText: p.text || '',\n      authorName: p.authorName || '',\n      url: p.url || '',\n      numLikes: p.numLikes,\n      numComments: p.numComments\n    }\n  });\n}\n\nreturn results;"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        432,
-        -432
-      ],
-      "id": "07aa3abd-c73c-4590-a318-5745877aab68",
-      "name": "Code in JavaScript"
     }
   ],
   "origin": "n8n",
@@ -387,6 +382,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-03-20T07:15:24.921Z",
-  "versionId": "a1ad4328-58e4-4daf-8594-a98432986504"
+  "updatedAt": "2026-03-26T15:59:16.148Z",
+  "versionId": "e546e442-501e-4ebc-b0b7-5a3c2c4cf96a"
 }
