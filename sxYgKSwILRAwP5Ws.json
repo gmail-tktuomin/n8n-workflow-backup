@@ -3,17 +3,6 @@
   "activeVersion": null,
   "activeVersionId": null,
   "connections": {
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        [
-          {
-            "node": "Viikkoraportti myyntijohtajalle",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Send a message in Gmail": {
       "ai_tool": [
         [
@@ -386,17 +375,6 @@
   "name": "Severa kysely",
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -2032,
-        272
-      ],
-      "id": "1200ef9e-2ecd-4a2d-ad5e-d544e6a471c5",
-      "name": "When clicking ‘Execute workflow’"
-    },
-    {
       "parameters": {
         "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
         "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
@@ -495,7 +473,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -776,
+        -784,
         -128
       ],
       "id": "9423cd55-4ede-402d-8cf8-7ba594849323",
@@ -1245,6 +1223,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2026-03-24T11:46:21.168Z",
-  "versionId": "1adee34b-f4a4-4dc0-b259-43075e4a98cb"
+  "updatedAt": "2026-03-31T07:37:21.385Z",
+  "versionId": "a0d5266a-6c5d-4a38-a85c-b98d1a18cd2e"
 }
